@@ -1,0 +1,340 @@
+fileFormatVersion: 2
+guid: 65b2b28aede98b24aa89702a08599a34
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2168655384976774199
+    second: enemies-vampire_movement_0
+  - first:
+      213: 8965175214542997927
+    second: enemies-vampire_movement_1
+  - first:
+      213: -3738762902930035113
+    second: enemies-vampire_movement_2
+  - first:
+      213: 2100464449051817614
+    second: enemies-vampire_movement_3
+  - first:
+      213: -8187684412701654721
+    second: enemies-vampire_movement_4
+  - first:
+      213: 429374533021563476
+    second: enemies-vampire_movement_5
+  - first:
+      213: -3659946452370719798
+    second: enemies-vampire_movement_6
+  - first:
+      213: -5394975323375022170
+    second: enemies-vampire_movement_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemies-vampire_movement_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 4
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.46153846, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31511c2c14360c3439f930923b901328
+      internalID: -2168655384976774199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 4
+        width: 13
+        height: 19
+      alignment: 9
+      pivot: {x: 0.46153846, y: 0.42105263}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f9385a2d9f30c428ebd0eb5f7d6512
+      internalID: 8965175214542997927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 4
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.46153846, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b74f67d5109f303479a09a537331bf34
+      internalID: -3738762902930035113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_3
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 4
+        width: 12
+        height: 17
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce74369294e13249a1c1ac0c04e842e
+      internalID: 2100464449051817614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_4
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 4
+        width: 13
+        height: 18
+      alignment: 9
+      pivot: {x: 0.46153846, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe71b8a43e31b6a439addc68c1cd86de
+      internalID: -8187684412701654721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 4
+        width: 12
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5, y: 0.42105263}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3004724be22effc4688dc80d0413bacc
+      internalID: 429374533021563476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_6
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 4
+        width: 12
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1e276ace49a394596fa33235fb6405
+      internalID: -3659946452370719798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemies-vampire_movement_7
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 4
+        width: 12
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5, y: 0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54dc3f7a46a6b624586d3556c3f1618d
+      internalID: -5394975323375022170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ac9850d538bc5e148929c20ab4a78112
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: ac110bbbb042b9a44a07f0e9ae0e0ce2, type: 3}
+      name: _EmissionTex
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      enemies-vampire_movement_0: -2168655384976774199
+      enemies-vampire_movement_1: 8965175214542997927
+      enemies-vampire_movement_2: -3738762902930035113
+      enemies-vampire_movement_3: 2100464449051817614
+      enemies-vampire_movement_4: -8187684412701654721
+      enemies-vampire_movement_5: 429374533021563476
+      enemies-vampire_movement_6: -3659946452370719798
+      enemies-vampire_movement_7: -5394975323375022170
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

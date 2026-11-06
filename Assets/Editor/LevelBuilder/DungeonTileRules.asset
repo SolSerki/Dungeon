@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8327543d8bbed43bbeccf9753a8a88, type: 3}
+  m_Name: DungeonTileRules
+  m_EditorClassIdentifier: Assembly-CSharp-Editor::LevelTileRules
+  floorTopLeft: {fileID: 11400000, guid: 332496919c13bfe4ba51ce92b1ad88fc, type: 2}
+  floorTop:
+  - {fileID: 11400000, guid: 89ad624293e494d4dbd26df3021406a2, type: 2}
+  - {fileID: 11400000, guid: 42b69792cbba6b941a14186a08847f72, type: 2}
+  floorTopRight: {fileID: 11400000, guid: 8df769a561e32c64a8111fd6fc98fb69, type: 2}
+  floorLeft: {fileID: 11400000, guid: 2828c1ac30cb1c343943e629fb7c433f, type: 2}
+  floorRight: {fileID: 11400000, guid: 8b43b1b907db79748ba5425daa615295, type: 2}
+  floorBottomLeft: {fileID: 11400000, guid: 9bc932a5d55d54348ab4149bbf3beed4, type: 2}
+  floorBottom:
+  - {fileID: 11400000, guid: 9f11130210a4b404982ae06e9e90ab78, type: 2}
+  - {fileID: 11400000, guid: 7db2bb9fb634aa345afa3a406e2259e8, type: 2}
+  floorBottomRight: {fileID: 11400000, guid: 8d5eb8f346e93ad4db57bf0e40417b15, type: 2}
+  floorInterior: {fileID: 11400000, guid: 8be6449a0a7308b4d84fd92d661c3486, type: 2}
+  wallTopLeftEnd: {fileID: 11400000, guid: eb3ba9ed266cca3418fa27b81ad0a7c8, type: 2}
+  wallTop:
+  - {fileID: 11400000, guid: 0aa5aca0f8e2ad4458656e027625fbad, type: 2}
+  - {fileID: 11400000, guid: 06a53a967aa6be6479d3c9bbc5825a81, type: 2}
+  wallTopRightEnd: {fileID: 11400000, guid: d54813b805346654fbeaf9c93130b41e, type: 2}
+  wallBottomLeftEnd: {fileID: 11400000, guid: 92b610779cdabd348a4e20dd0e8ad4bc, type: 2}
+  wallBottom:
+  - {fileID: 11400000, guid: 9b7e3de241389bb47b1928b51fc80c40, type: 2}
+  - {fileID: 11400000, guid: a646687b9c7fda14f8da67b3b2186da3, type: 2}
+  wallBottomRightEnd: {fileID: 11400000, guid: 15c9b52cca8bdc04ba271ddd19eb60fe, type: 2}
+  wallLeft:
+  - {fileID: 11400000, guid: 893389ab53e053343903f5158bfcfc33, type: 2}
+  - {fileID: 11400000, guid: 18e0a53830e563241974e2072d2bd6d0, type: 2}
+  - {fileID: 11400000, guid: ca5d4babf478ead409ba42d752a52cfe, type: 2}
+  wallRight:
+  - {fileID: 11400000, guid: 158e3372505efbd4095ddfda504a990c, type: 2}
+  - {fileID: 11400000, guid: e073435cbbf44dd47991a0eca49e0df5, type: 2}
+  - {fileID: 11400000, guid: 5409c143e03f61845a77e6def172febe, type: 2}
+  cornerTopLeft: {fileID: 11400000, guid: 401576584934ce24f953253cb92fd987, type: 2}
+  cornerTopRight: {fileID: 11400000, guid: 4e60fca571aa3f448a72f5b04c48dc5d, type: 2}
+  cornerBottomLeft: {fileID: 11400000, guid: 30eddff2cd481b447a204d2472dc8262, type: 2}
+  cornerBottomRight: {fileID: 11400000, guid: 86d30b4c544709c41a2e0b3869f751f3, type: 2}
+  bottomJoinFloorRight: {fileID: 11400000, guid: e16678e601463f241b9e8c5471628f0e, type: 2}
+  bottomJoinFloorLeft: {fileID: 11400000, guid: c0dd9b50829f6744581fd03a93849465, type: 2}
+  voidTile: {fileID: 11400000, guid: b0d9829f1ae23d14ca439762f029eb07, type: 2}

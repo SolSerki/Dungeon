@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: 2606f46cc454de245931c90ca77b1b4b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8834648164145566813
+    second: Slime1_Death_emission_0
+  - first:
+      213: 1708986628851560421
+    second: Slime1_Death_emission_1
+  - first:
+      213: -6874189811661243106
+    second: Slime1_Death_emission_2
+  - first:
+      213: -6514266682368165334
+    second: Slime1_Death_emission_3
+  - first:
+      213: -1468522985986630918
+    second: Slime1_Death_emission_4
+  - first:
+      213: 5994307745770175693
+    second: Slime1_Death_emission_5
+  - first:
+      213: 2674189300584952327
+    second: Slime1_Death_emission_6
+  - first:
+      213: 519112787738498868
+    second: Slime1_Death_emission_7
+  - first:
+      213: 7243445140334580889
+    second: Slime1_Death_emission_8
+  - first:
+      213: 2679005626362039706
+    second: Slime1_Death_emission_9
+  - first:
+      213: -4987481427703317035
+    second: Slime1_Death_emission_10
+  - first:
+      213: -9175981662940448152
+    second: Slime1_Death_emission_11
+  - first:
+      213: -3388377120030980820
+    second: Slime1_Death_emission_12
+  - first:
+      213: 7930027948896346091
+    second: Slime1_Death_emission_13
+  - first:
+      213: -5842738619540610357
+    second: Slime1_Death_emission_14
+  - first:
+      213: -5531661656840542456
+    second: Slime1_Death_emission_15
+  - first:
+      213: 1415412050503011869
+    second: Slime1_Death_emission_16
+  - first:
+      213: -3289055561961341001
+    second: Slime1_Death_emission_17
+  - first:
+      213: -5147027549030501777
+    second: Slime1_Death_emission_18
+  - first:
+      213: 4743792929807322248
+    second: Slime1_Death_emission_19
+  - first:
+      213: 2152739628474389048
+    second: Slime1_Death_emission_20
+  - first:
+      213: 7380137747435729894
+    second: Slime1_Death_emission_21
+  - first:
+      213: -6173966349377997340
+    second: Slime1_Death_emission_22
+  - first:
+      213: -6474891337029991696
+    second: Slime1_Death_emission_23
+  - first:
+      213: -6182523441394052624
+    second: Slime1_Death_emission_24
+  - first:
+      213: -9098819092105552420
+    second: Slime1_Death_emission_25
+  - first:
+      213: -2673225821262385746
+    second: Slime1_Death_emission_26
+  - first:
+      213: 391267842548168337
+    second: Slime1_Death_emission_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Slime1_Death_emission_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 216
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54147382b9fa9a70800000000000000
+      internalID: 8834648164145566813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 216
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5efe69ac84a87b710800000000000000
+      internalID: 1708986628851560421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_2
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 216
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1d725d89c8f990a0800000000000000
+      internalID: -6874189811661243106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_3
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 216
+        width: 37
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2a784967fca895a0800000000000000
+      internalID: -6514266682368165334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_4
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 216
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa55c3ff12ce9be0800000000000000
+      internalID: -1468522985986630918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_5
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 216
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dccf005b22f003350800000000000000
+      internalID: 5994307745770175693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_6
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 216
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702348b1001ac1520800000000000000
+      internalID: 2674189300584952327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 152
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 437148f7452443700800000000000000
+      internalID: 519112787738498868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_8
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 152
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9941cab4af2e58460800000000000000
+      internalID: 7243445140334580889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_9
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 152
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9d05965c6dbd2520800000000000000
+      internalID: 2679005626362039706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_10
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 152
+        width: 37
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ddb2e9f018e8cab0800000000000000
+      internalID: -4987481427703317035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_11
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 152
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86abfe24b4d58a080800000000000000
+      internalID: -9175981662940448152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_12
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 152
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c250e7336f01af0d0800000000000000
+      internalID: -3388377120030980820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_13
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 152
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: befd2e8876e1d0e60800000000000000
+      internalID: 7930027948896346091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_14
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 88
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc263d28e2c6aeea0800000000000000
+      internalID: -5842738619540610357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_15
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 88
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 807ee56f7079b33b0800000000000000
+      internalID: -5531661656840542456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_16
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 88
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1e0a01c2cd84a310800000000000000
+      internalID: 1415412050503011869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_17
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 88
+        width: 37
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf75ce746dea52d0800000000000000
+      internalID: -3289055561961341001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_18
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 88
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6233ead6b51298b0800000000000000
+      internalID: -5147027549030501777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_19
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 88
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ccc25398655d140800000000000000
+      internalID: 4743792929807322248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_20
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 88
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8325f11594110ed10800000000000000
+      internalID: 2152739628474389048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_21
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3bb5dfd248b6660800000000000000
+      internalID: 7380137747435729894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_22
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 24
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e5fb1af05aa15aa0800000000000000
+      internalID: -6173966349377997340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_23
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 24
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f2c21962a09426a0800000000000000
+      internalID: -6474891337029991696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_24
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 24
+        width: 37
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f19e2cbfa3433aa0800000000000000
+      internalID: -6182523441394052624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_25
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 24
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd918b4e308ab180800000000000000
+      internalID: -9098819092105552420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_26
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 24
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eade047674bc6ead0800000000000000
+      internalID: -2673225821262385746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Death_emission_27
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 24
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 196fd1f97001e6500800000000000000
+      internalID: 391267842548168337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Slime1_Death_emission_0: 8834648164145566813
+      Slime1_Death_emission_1: 1708986628851560421
+      Slime1_Death_emission_10: -4987481427703317035
+      Slime1_Death_emission_11: -9175981662940448152
+      Slime1_Death_emission_12: -3388377120030980820
+      Slime1_Death_emission_13: 7930027948896346091
+      Slime1_Death_emission_14: -5842738619540610357
+      Slime1_Death_emission_15: -5531661656840542456
+      Slime1_Death_emission_16: 1415412050503011869
+      Slime1_Death_emission_17: -3289055561961341001
+      Slime1_Death_emission_18: -5147027549030501777
+      Slime1_Death_emission_19: 4743792929807322248
+      Slime1_Death_emission_2: -6874189811661243106
+      Slime1_Death_emission_20: 2152739628474389048
+      Slime1_Death_emission_21: 7380137747435729894
+      Slime1_Death_emission_22: -6173966349377997340
+      Slime1_Death_emission_23: -6474891337029991696
+      Slime1_Death_emission_24: -6182523441394052624
+      Slime1_Death_emission_25: -9098819092105552420
+      Slime1_Death_emission_26: -2673225821262385746
+      Slime1_Death_emission_27: 391267842548168337
+      Slime1_Death_emission_3: -6514266682368165334
+      Slime1_Death_emission_4: -1468522985986630918
+      Slime1_Death_emission_5: 5994307745770175693
+      Slime1_Death_emission_6: 2674189300584952327
+      Slime1_Death_emission_7: 519112787738498868
+      Slime1_Death_emission_8: 7243445140334580889
+      Slime1_Death_emission_9: 2679005626362039706
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
