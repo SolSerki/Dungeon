@@ -1,0 +1,832 @@
+fileFormatVersion: 2
+guid: 57870e6e38f3e1248b222c991f2c9358
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4695342310850569985
+    second: Slime1_Spit_emission_0
+  - first:
+      213: 6771559283058976824
+    second: Slime1_Spit_emission_1
+  - first:
+      213: 2437147308594636254
+    second: Slime1_Spit_emission_2
+  - first:
+      213: 959546927375565140
+    second: Slime1_Spit_emission_3
+  - first:
+      213: -2348296251567790999
+    second: Slime1_Spit_emission_4
+  - first:
+      213: -4863156732743686911
+    second: Slime1_Spit_emission_5
+  - first:
+      213: -8432557102862517678
+    second: Slime1_Spit_emission_6
+  - first:
+      213: 688112857916275248
+    second: Slime1_Spit_emission_7
+  - first:
+      213: 4427010235568443609
+    second: Slime1_Spit_emission_8
+  - first:
+      213: -3133774727794527155
+    second: Slime1_Spit_emission_9
+  - first:
+      213: -4318834342066267859
+    second: Slime1_Spit_emission_10
+  - first:
+      213: 111639059768321368
+    second: Slime1_Spit_emission_11
+  - first:
+      213: 1583397611008153758
+    second: Slime1_Spit_emission_12
+  - first:
+      213: 7715157275085676188
+    second: Slime1_Spit_emission_13
+  - first:
+      213: -4305431694528942522
+    second: Slime1_Spit_emission_14
+  - first:
+      213: -7353411470903002704
+    second: Slime1_Spit_emission_15
+  - first:
+      213: -453672934602065445
+    second: Slime1_Spit_emission_16
+  - first:
+      213: 963116712009849537
+    second: Slime1_Spit_emission_17
+  - first:
+      213: -6111953391667780047
+    second: Slime1_Spit_emission_18
+  - first:
+      213: -143843274910020074
+    second: Slime1_Spit_emission_19
+  - first:
+      213: -6752491633244006414
+    second: Slime1_Spit_emission_20
+  - first:
+      213: 8436425085345031214
+    second: Slime1_Spit_emission_21
+  - first:
+      213: 4171439430856393961
+    second: Slime1_Spit_emission_22
+  - first:
+      213: -3778683757057024816
+    second: Slime1_Spit_emission_23
+  - first:
+      213: 5950330403686450241
+    second: Slime1_Spit_emission_24
+  - first:
+      213: -1452841193158340798
+    second: Slime1_Spit_emission_25
+  - first:
+      213: -1991656920629648671
+    second: Slime1_Spit_emission_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 216
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1072c1964f4392140800000000000000
+      internalID: 4695342310850569985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 216
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838aa3a6a4969fd50800000000000000
+      internalID: 6771559283058976824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 217
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed5251a809c72d120800000000000000
+      internalID: 2437147308594636254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 211
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 451c987b8def05d00800000000000000
+      internalID: 959546927375565140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_4
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 208
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 964abe1400d296fd0800000000000000
+      internalID: -2348296251567790999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_5
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 216
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10563c9b7b8928cb0800000000000000
+      internalID: -4863156732743686911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_6
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 209
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25abea71ef989fa80800000000000000
+      internalID: -8432557102862517678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_7
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 152
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03a7a7d9ffaac8900800000000000000
+      internalID: 688112857916275248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_8
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 152
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d0531c9a56ef6d30800000000000000
+      internalID: 4427010235568443609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_9
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 151
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d44f5bf0d789284d0800000000000000
+      internalID: -3133774727794527155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_10
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 154
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29d16d4c0b6014c0800000000000000
+      internalID: -4318834342066267859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_11
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 153
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 855ac84222f9c8100800000000000000
+      internalID: 111639059768321368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_12
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 152
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e98d75eecbb59f510800000000000000
+      internalID: 1583397611008153758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_13
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 88
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e90cf3aaeb11b60800000000000000
+      internalID: 7715157275085676188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_14
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 88
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64ee4ea5fa80044c0800000000000000
+      internalID: -4305431694528942522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_15
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 88
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b93b8d2a3f63f990800000000000000
+      internalID: -7353411470903002704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_16
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 84
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd9b5d0aeda34b9f0800000000000000
+      internalID: -453672934602065445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_17
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 88
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cad698fb8dad5d00800000000000000
+      internalID: 963116712009849537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_18
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 88
+        width: 29
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 136e5e5d5cafd2ba0800000000000000
+      internalID: -6111953391667780047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_19
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 88
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ec8a7bd47f00ef0800000000000000
+      internalID: -143843274910020074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_20
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 24
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f791b3c2a45a42a0800000000000000
+      internalID: -6752491633244006414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_21
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 24
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e246f22cae3341570800000000000000
+      internalID: 8436425085345031214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_22
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 24
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e4c046af0ee3e930800000000000000
+      internalID: 4171439430856393961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_23
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 24
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dcd31ea42b6f8bc0800000000000000
+      internalID: -3778683757057024816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_24
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 20
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14400f7d9f1d39250800000000000000
+      internalID: 5950330403686450241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_25
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 24
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f0ebed1a876dbe0800000000000000
+      internalID: -1452841193158340798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slime1_Spit_emission_26
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 24
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e2eb6b35963c54e0800000000000000
+      internalID: -1991656920629648671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Slime1_Spit_emission_0: 4695342310850569985
+      Slime1_Spit_emission_1: 6771559283058976824
+      Slime1_Spit_emission_10: -4318834342066267859
+      Slime1_Spit_emission_11: 111639059768321368
+      Slime1_Spit_emission_12: 1583397611008153758
+      Slime1_Spit_emission_13: 7715157275085676188
+      Slime1_Spit_emission_14: -4305431694528942522
+      Slime1_Spit_emission_15: -7353411470903002704
+      Slime1_Spit_emission_16: -453672934602065445
+      Slime1_Spit_emission_17: 963116712009849537
+      Slime1_Spit_emission_18: -6111953391667780047
+      Slime1_Spit_emission_19: -143843274910020074
+      Slime1_Spit_emission_2: 2437147308594636254
+      Slime1_Spit_emission_20: -6752491633244006414
+      Slime1_Spit_emission_21: 8436425085345031214
+      Slime1_Spit_emission_22: 4171439430856393961
+      Slime1_Spit_emission_23: -3778683757057024816
+      Slime1_Spit_emission_24: 5950330403686450241
+      Slime1_Spit_emission_25: -1452841193158340798
+      Slime1_Spit_emission_26: -1991656920629648671
+      Slime1_Spit_emission_3: 959546927375565140
+      Slime1_Spit_emission_4: -2348296251567790999
+      Slime1_Spit_emission_5: -4863156732743686911
+      Slime1_Spit_emission_6: -8432557102862517678
+      Slime1_Spit_emission_7: 688112857916275248
+      Slime1_Spit_emission_8: 4427010235568443609
+      Slime1_Spit_emission_9: -3133774727794527155
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

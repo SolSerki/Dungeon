@@ -1,0 +1,43 @@
+using System;
+using UnityEngine;
+
+// Maná del slime: se gasta (por ahora con el sprint) y se recarga solo
+// después de un rato sin gastar.
+public class ManaSystem : MonoBehaviour
+{
+    [SerializeField] private float _maxMana = 100f;
+    [SerializeField] private float _regenPerSecond = 20f;
+    [SerializeField] private float _regenDelay = 0.75f; // segundos sin gastar antes de empezar a recargar
+
+    private float _currentMana;
+    private float _lastSpendTime = -Mathf.Infinity;
+
+    public float MaxMana => _maxMana;
+    public float CurrentMana => _currentMana;
+    public event Action<float, float> OnManaChanged; // (actual, máximo)
+
+    private void Awake()
+    {
+        _currentMana = _maxMana;
+    }
+
+    // Gasta hasta 'amount' (lo que haya) y devuelve cuánto gastó de verdad
+    public float Drain(float amount)
+    {
+        float spent = Mathf.Min(amount, _currentMana);
+        if (spent <= 0f) return 0f;
+
+        _currentMana -= spent;
+        _lastSpendTime = Time.time;
+        OnManaChanged?.Invoke(_currentMana, _maxMana);
+        return spent;
+    }
+
+    private void Update()
+    {
+        if (_currentMana >= _maxMana || Time.time < _lastSpendTime + _regenDelay) return;
+
+        _currentMana = Mathf.Min(_currentMana + _regenPerSecond * Time.deltaTime, _maxMana);
+        OnManaChanged?.Invoke(_currentMana, _maxMana);
+    }
+}

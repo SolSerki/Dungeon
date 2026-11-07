@@ -10,6 +10,11 @@ public class EnemyMeleeAttack : MonoBehaviour
     [SerializeField] private float _attackDuration = 0.75f; // duración de la animación de ataque
     [SerializeField] private float _cooldown = 1f;
 
+    [Header("Sonidos")]
+    [SerializeField] private AudioSource _audio;
+    [SerializeField] private AudioClip[] _attackSounds;   // suena en el fotograma del golpe, pegue o no
+    [SerializeField, Range(0f, 1f)] private float _attackVolume = 0.6f;
+
     private int _attackHash;
     private Vector2 _attackDirection;
     private float _attackEndTime;
@@ -33,6 +38,8 @@ public class EnemyMeleeAttack : MonoBehaviour
     // Lo llama un Animation Event en el fotograma del impacto
     public void DealDamage()
     {
+        Sfx.PlayRandom(_audio, _attackSounds, _attackVolume);
+
         Vector2 hitCenter = (Vector2)transform.position + _attackDirection * _hitOffset;
         foreach (var hit in Physics2D.OverlapCircleAll(hitCenter, _hitRadius))
         {

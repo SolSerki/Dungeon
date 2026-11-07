@@ -52,6 +52,17 @@ public class HealthSystem : MonoBehaviour
         }    
     }
 
+    // Gasta vida a propósito (lanzar un pedazo): sin invulnerabilidad, knockback ni animación de daño.
+    // No deja gastar la última vida.
+    public bool TrySpend(float amount)
+    {
+        if (IsDead || _currentHealth <= amount) return false;
+
+        _currentHealth -= amount;
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        return true;
+    }
+
     public void Heal(float amount)
     {
         if (IsDead) return;

@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: d29a47fc7ffab964ca3bf00912e0b05c, type: 2}
     - target: {fileID: 1959311907287603196, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: _maxHealth
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2182644241754492034, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: m_Size.x
@@ -116,6 +116,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton1
       objectReference: {fileID: 0}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: _damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: _attackSounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_attackSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 371216e090bfc8e409d98a5261da0eee, type: 3}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_attackSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cc690b9edfc1f84eb72980ce4a0fb1e, type: 3}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_attackSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2146fcf254f5ca348baec0fd7cc3f3e5, type: 3}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_attackSounds.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a43be6c4d9937c14bb7b20b66952cfaa, type: 3}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_attackSounds.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f438fc6c6073597468b84dddb362b2a4, type: 3}
+    - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_attackSounds.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e3abbe286fcf25489ab5f349043774c, type: 3}
     - target: {fileID: 7976393105088103698, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: m_Size.x
       value: 2

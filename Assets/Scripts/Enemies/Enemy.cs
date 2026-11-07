@@ -3,18 +3,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] private Animator _animator;
-    [SerializeField] private HealthSystem _health;
-    [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    // protected: las clases hijas (Boss) los usan
+    [SerializeField] protected Animator _animator;
+    [SerializeField] protected HealthSystem _health;
+    [SerializeField] protected Rigidbody2D _rigidbody;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
     [SerializeField] private int _deadSortingOrder = 0; // por debajo del Character (1)
 
     private int _attackHash;
     private int _isDeadHash;
     private int _recieveDamageHash;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // virtual: una clase hija puede extenderlo llamando a base.Start()
+    protected virtual void Start()
     {
         _attackHash = Animator.StringToHash("_attack");
         _isDeadHash = Animator.StringToHash("_isDead");
@@ -28,12 +29,12 @@ public class Enemy : MonoBehaviour
         _health.OnDamaged += (damageInfo) => Debug.Log($"Enemy took damage! Current Health: {damageInfo.CurrentHealth}, Max Health: {damageInfo.MaxHealth}");
     }
 
-    public void TakeDamage(HealthSystem.DamageInfo damageInfo)
+    public virtual void TakeDamage(HealthSystem.DamageInfo damageInfo)
     {
         _animator.SetTrigger(_recieveDamageHash);
     }
 
-    void Die()
+    protected virtual void Die()
     {
         _animator.SetTrigger(_isDeadHash);
         _rigidbody.simulated = false; // los restos dejan de colisionar y de recibir golpes
