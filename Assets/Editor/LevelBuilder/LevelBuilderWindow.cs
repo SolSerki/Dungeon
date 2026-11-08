@@ -173,7 +173,11 @@ public class LevelBuilderWindow : EditorWindow
 
         _doorPrefabIndex = EditorGUILayout.Popup("Prefab", _doorPrefabIndex, _doorPrefabs.Select(p => p.name).ToArray());
         if (GUILayout.Button("Nueva puerta en el centro de la vista")) CreateDoor(_doorPrefabs[_doorPrefabIndex]);
-        EditorGUILayout.LabelField("Seleccionada, se arrastra de a celdas y se gira con los botones de la escena o Shift+R.", EditorStyles.wordWrappedMiniLabel);
+        EditorGUILayout.LabelField("Seleccionada, se arrastra de a celdas y se gira con los botones de la escena o Shift+R. Girar cambia entre la puerta de frente y la de costado.", EditorStyles.wordWrappedMiniLabel);
+
+        int rotated = DoorPlacement.FindRotatedWithCounterpart().Length;
+        if (rotated > 0 && GUILayout.Button($"Cambiar {rotated} puertas giradas por la de costado"))
+            Run(DoorPlacement.ReplaceRotated);
     }
 
     private void DrawRoomsSection()

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 // Coloca las puertas sobre la grilla y revisa que tapen el hueco.
-// El tamaño en celdas sale del BoxCollider2D de la puerta (2x1 en Puerta.prefab).
+// El tamaño en celdas sale del BoxCollider2D de la puerta (2x1 en Puerta.prefab, 1x2 en PuertaLateral.prefab).
 public static class DoorPlacement
 {
     public const string DoorsRootName = "Puertas";
@@ -75,9 +75,37 @@ public static class DoorPlacement
         return true;
     }
 
-    // Deja fija la celda de abajo a la izquierda: a 180° tapa las mismas celdas y nunca se va corriendo
+    // La versión de la puerta para la otra orientación: el prefab con el ancho y el alto intercambiados
+    // (Puerta 2x1 <-> PuertaLateral 1x2). null si no hay ninguna.
+    public static GameObject FindCounterpart(LockedDoor door)
+    {
+        var source = PrefabUtility.GetCorrespondingObjectFromSource(door);
+        if (source == null) return null;
+
+        var size = Footprint(source, 0f);
+        return FindDoorPrefabs().FirstOrDefault(p =>
+        {
+            var other = p.GetComponent<LockedDoor>();
+            return other != source && Footprint(other, 0f) == new Vector2Int(size.y, size.x);
+        });
+    }
+
+    // Deja fija la celda de abajo a la izquierda: a 180° tapa las mismas celdas y nunca se va corriendo.
+    // Si la puerta tiene versión para la otra orientación, un cuarto de vuelta la cambia por esa en vez de girar el sprite.
     public static void Rotate(LockedDoor door, float degrees)
     {
+        bool quarterTurn = Mathf.RoundToInt(degrees / 90f) % 2 != 0;
+        var counterpart = quarterTurn ? FindCounterpart(door) : null;
+        if (counterpart != null)
+        {
+            var anchor = Corner(door);
+            door = Swap(door, counterpart);
+            var size = Footprint(door, 0f);
+            var cellSize = CellSize();
+            door.transform.position = SnapPosition(door, anchor + new Vector3(size.x * cellSize.x, size.y * cellSize.y) * 0.5f, 0f);
+            return;
+        }
+
         var t = door.transform;
         var cell = CellSize();
         var before = Footprint(door, t.eulerAngles.z);
@@ -88,6 +116,46 @@ public static class DoorPlacement
         Undo.RecordObject(t, "Girar puerta");
         t.rotation = Quaternion.Euler(0f, 0f, angle);
         t.position = SnapPosition(door, corner + new Vector3(after.x * cell.x, after.y * cell.y) * 0.5f, angle);
+    }
+
+    private static Vector3 Corner(LockedDoor door)
+    {
+        var size = Footprint(door, door.transform.eulerAngles.z);
+        var cell = CellSize();
+        return door.transform.position - new Vector3(size.x * cell.x, size.y * cell.y) * 0.5f;
+    }
+
+    // Cambia el prefab de la puerta sin perder el objeto: conserva el nombre, el padre y lo que tenga sobrescrito
+    private static LockedDoor Swap(LockedDoor door, GameObject prefab)
+    {
+        var go = door.gameObject;
+        var oldName = PrefabUtility.GetCorrespondingObjectFromSource(go).name;
+        var settings = new PrefabReplacingSettings { changeRootNameToAssetName = false, objectMatchMode = ObjectMatchMode.ByHierarchy };
+        PrefabUtility.ReplacePrefabAssetOfPrefabInstance(go, prefab, settings, InteractionMode.UserAction);
+
+        // "Puerta (2)" pasa a "PuertaLateral (2)"; un nombre puesto a mano queda como está
+        Undo.RecordObject(go, "Cambiar puerta");
+        if (go.name.StartsWith(oldName)) go.name = prefab.name + go.name.Substring(oldName.Length);
+        Undo.RecordObject(go.transform, "Cambiar puerta");
+        go.transform.rotation = Quaternion.identity;
+        return go.GetComponent<LockedDoor>();
+    }
+
+    // Puertas giradas 90° o 270° que tienen versión de costado
+    public static LockedDoor[] FindRotatedWithCounterpart() =>
+        FindDoors().Where(d => Mathf.RoundToInt(SnapAngle(d.transform.eulerAngles.z) / 90f) % 2 != 0 && FindCounterpart(d) != null).ToArray();
+
+    // Ya tapan las mismas celdas que la versión de costado: alcanza con cambiarlas y dejarlas sin giro
+    public static void ReplaceRotated(LevelBuildReport report)
+    {
+        var doors = FindRotatedWithCounterpart();
+        foreach (var door in doors)
+        {
+            var position = door.transform.position;
+            var swapped = Swap(door, FindCounterpart(door));
+            swapped.transform.position = SnapPosition(swapped, position, 0f);
+        }
+        if (doors.Length > 0) report.Info($"Cambié {doors.Length} puertas giradas por su versión de costado.");
     }
 
     public static GameObject Create(GameObject prefab, Vector3 position, Scene scene)
