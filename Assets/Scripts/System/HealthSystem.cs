@@ -11,7 +11,8 @@ public class HealthSystem : MonoBehaviour
     public bool IsDead => _currentHealth <= 0;
     public event Action<DamageInfo> OnDamaged;
     public event Action OnDied;
-    public event Action<float, float> OnHealthChanged; // (actual, máxima)
+    public event Action OnRevived;
+    public event Action<float, float> OnHealthChanged; // (current, max)
     public float MaxHealth => _maxHealth;
     public float CurrentHealth => _currentHealth;
     public float InvulnerabilityDuration => _invulnerabilityDuration;
@@ -52,8 +53,8 @@ public class HealthSystem : MonoBehaviour
         }    
     }
 
-    // Gasta vida a propósito (lanzar un pedazo): sin invulnerabilidad, knockback ni animación de daño.
-    // No deja gastar la última vida.
+    // Spends health on purpose (throwing a chunk): no invulnerability, knockback or hurt animation.
+    // The last bit of health can't be spent.
     public bool TrySpend(float amount)
     {
         if (IsDead || _currentHealth <= amount) return false;
@@ -69,6 +70,18 @@ public class HealthSystem : MonoBehaviour
 
         _currentHealth = Mathf.Min(_currentHealth + amount, _maxHealth);
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+    }
+
+    // Back to full health after dying (a Ghost reviving a Slime2, see Revivable).
+    // Each component undoes what it did in OnDied by listening to OnRevived.
+    public void Revive()
+    {
+        if (!IsDead) return;
+
+        _currentHealth = _maxHealth;
+        _lastDamageTime = -Mathf.Infinity;
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        OnRevived?.Invoke();
     }
 
     // Update is called once per frame

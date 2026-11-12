@@ -1,7 +1,7 @@
 using UnityEngine;
 
-// Ayuda para los efectos de sonido: cada evento tiene varias variaciones y se elige una al azar
-// para que no suene siempre igual.
+// Sound effect helper: each event has several variations and one is picked at random
+// so it doesn't always sound the same.
 public static class Sfx
 {
     public static AudioClip Random(AudioClip[] clips)

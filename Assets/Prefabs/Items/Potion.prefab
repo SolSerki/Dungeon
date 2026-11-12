@@ -139,7 +139,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5537332258857776574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4e0e46619ad1c4895b3ffa141ef945, type: 3}
+  m_Script: {fileID: 11500000, guid: 97ad262bbdb7bb041bbe88fc40cfa432, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PotionPickup
-  _healAmount: 2
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  _item: {fileID: 11400000, guid: 9e7f4e89af2c4954b27e5f3b7ecc309d, type: 2}
+  _audio: {fileID: 0}

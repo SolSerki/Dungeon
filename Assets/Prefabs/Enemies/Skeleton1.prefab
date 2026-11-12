@@ -116,6 +116,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton1
       objectReference: {fileID: 0}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: _hurtSounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e9705156ec1fb74ba4ddc03533ce00b, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f8390842baef1d428261b1323842ace, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 374e7d8750aa88641a45293904c15776, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 220c4cb3f844f9e4982f87a4e9a4837c, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 53f5b80404a26444ca31f97ae2451837, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e3a65ba00bedb24b9ca3f18dc60766d, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: _damage
       value: 2

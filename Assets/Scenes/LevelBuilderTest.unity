@@ -1478,7 +1478,7 @@ GameObject:
   - component: {fileID: 907633391}
   - component: {fileID: 907633393}
   m_Layer: 0
-  m_Name: Piso
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6009,7 +6009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158881281}
   m_Layer: 0
-  m_Name: Enemigos
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6723,7 +6723,7 @@ GameObject:
   - component: {fileID: 2025461725}
   - component: {fileID: 2025461726}
   m_Layer: 6
-  m_Name: Paredes
+  m_Name: Walls
   m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

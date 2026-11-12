@@ -7,7 +7,12 @@ public class LockedDoor : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider2D _blocker;
     [SerializeField] private NavMeshSurface _navMesh;
-    [SerializeField] private NavMeshModifier[] _navBlockers; // los de Hoja_iz y Hoja_de
+    [SerializeField] private NavMeshModifier[] _navBlockers; // the ones on Leaf_Left and Leaf_Right
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource _audio;
+    [SerializeField] private AudioClip[] _unlockSounds;   // when using the key
+    [SerializeField, Range(0f, 1f)] private float _unlockVolume = 0.7f;
 
     private int _openHash;
     private bool _isOpen;
@@ -16,7 +21,7 @@ public class LockedDoor : MonoBehaviour
     {
         _openHash = Animator.StringToHash("_open");
 
-        // El prefab no puede guardar referencias a objetos de la escena: las buscamos al empezar
+        // The prefab can't store references to scene objects: look them up on start
         if (_navMesh == null) _navMesh = FindAnyObjectByType<NavMeshSurface>();
         if (_navBlockers == null || _navBlockers.Length == 0) _navBlockers = GetComponentsInChildren<NavMeshModifier>();
     }
@@ -34,20 +39,21 @@ public class LockedDoor : MonoBehaviour
     private void Open()
     {
         _isOpen = true;
+        Sfx.PlayRandom(_audio, _unlockSounds, _unlockVolume);
         _blocker.enabled = false;
         _animator.SetTrigger(_openHash);
 
         StartCoroutine(RebuildNavMesh());
     }
 
-    // Open() se llama desde OnCollisionEnter2D, y BuildNavMesh destruye mallas temporales,
-    // algo que Unity no permite dentro de un callback de física: esperamos al frame siguiente
+    // Open() is called from OnCollisionEnter2D, and BuildNavMesh destroys temporary meshes,
+    // which Unity doesn't allow inside a physics callback: wait for the next frame
     private IEnumerator RebuildNavMesh()
     {
         yield return null;
 
         foreach (var blocker in _navBlockers) blocker.ignoreFromBuild = true;
-        // Genera un NavMesh nuevo en memoria; no toca el asset horneado de la escena
+        // Builds a new NavMesh in memory; doesn't touch the scene's baked asset
         _navMesh.BuildNavMesh();
     }
 

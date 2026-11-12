@@ -413,6 +413,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea1611de08dcc244bf3c6d099b4be5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlimeChunk
+  _collectSounds:
+  - {fileID: 8300000, guid: 71fb5fd5b44daab458bb1d4dd9bf2d44, type: 3}
+  - {fileID: 8300000, guid: 877560fa77e804147b48059d4bf0ec9e, type: 3}
+  - {fileID: 8300000, guid: fda6f2ac626e3f341b9bf7ba3a998fef, type: 3}
+  - {fileID: 8300000, guid: d294668b422f54d40a832d3bec997a18, type: 3}
+  - {fileID: 8300000, guid: bf00ca2e7eb1bd947953a4491d2f0ee3, type: 3}
+  - {fileID: 8300000, guid: 13fde2c4e3f6a3e40952c949ca540f86, type: 3}
+  _collectVolume: 0.7
   _body: {fileID: 2062030864948131841}
   _bodyRenderer: {fileID: 7311744320461346773}
   _shadow: {fileID: 8859622984016455321}

@@ -382,6 +382,11 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _deadSortingOrder: 0
+  _audio: {fileID: 4174642298285727209}
+  _hurtSounds: []
+  _deathSounds: []
+  _hurtVolume: 0.6
+  _deathVolume: 0.7
 --- !u!114 &1959311907287603196
 MonoBehaviour:
   m_ObjectHideFlags: 0

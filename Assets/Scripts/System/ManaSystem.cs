@@ -1,27 +1,27 @@
 using System;
 using UnityEngine;
 
-// Maná del slime: se gasta (por ahora con el sprint) y se recarga solo
-// después de un rato sin gastar.
+// The slime's mana: it gets spent (for now by sprinting) and recharges on its own
+// after a while without spending.
 public class ManaSystem : MonoBehaviour
 {
     [SerializeField] private float _maxMana = 100f;
     [SerializeField] private float _regenPerSecond = 20f;
-    [SerializeField] private float _regenDelay = 0.75f; // segundos sin gastar antes de empezar a recargar
+    [SerializeField] private float _regenDelay = 0.75f; // seconds without spending before it starts recharging
 
     private float _currentMana;
     private float _lastSpendTime = -Mathf.Infinity;
 
     public float MaxMana => _maxMana;
     public float CurrentMana => _currentMana;
-    public event Action<float, float> OnManaChanged; // (actual, máximo)
+    public event Action<float, float> OnManaChanged; // (current, max)
 
     private void Awake()
     {
         _currentMana = _maxMana;
     }
 
-    // Gasta hasta 'amount' (lo que haya) y devuelve cuánto gastó de verdad
+    // Spends up to 'amount' (whatever is available) and returns how much was actually spent
     public float Drain(float amount)
     {
         float spent = Mathf.Min(amount, _currentMana);

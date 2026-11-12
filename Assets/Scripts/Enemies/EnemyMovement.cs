@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 [SerializeField] private Animator _animator;
 [SerializeField] private SpriteRenderer _spriteRenderer;
 [SerializeField] private float _repathDistance = 0.3f;
+[SerializeField] private bool _flipToFace = true; // off for 4-direction sprites with their own left art (Slime2): sets MoveX/MoveY instead
 private HealthSystem _health;
 private NavMeshAgent _agent;
 private Rigidbody2D _rigidbody;
@@ -23,15 +24,18 @@ private void OnDisable() => _health.OnDied -= HandleDied;
         _rigidbody = GetComponent<Rigidbody2D>();
         _knockback = GetComponent<Knockback>();
 
-        _agent.updateRotation = false;  // en 2D no queremos que rote el sprite
-        _agent.updateUpAxis = false;    // el NavMesh está en XY
-        _agent.updatePosition = false;  // el Rigidbody2D mueve, el agent solo calcula la ruta
+        _agent.updateRotation = false;  // in 2D the sprite must not rotate
+        _agent.updateUpAxis = false;    // the NavMesh is on XY
+        _agent.updatePosition = false;  // the Rigidbody2D moves; the agent only computes the path
 
         _moveXHash = Animator.StringToHash("MoveX");
         _moveYHash = Animator.StringToHash("MoveY");
         _isWalkingHash = Animator.StringToHash("_isWalking");
         _health = GetComponent<HealthSystem>();
+        _health.OnRevived += HandleRevived; // here and not in OnEnable: the component is disabled while dead
     }
+
+    private void OnDestroy() => _health.OnRevived -= HandleRevived;
 
     public void MoveTo(Vector2 target)
     {
@@ -42,8 +46,17 @@ private void OnDisable() => _health.OnDied -= HandleDied;
 
     public void FaceTowards(Vector2 target)
     {
+        if (!_flipToFace)
+        {
+            // 4-direction sprites: the blend trees pick the clip that looks at the target
+            Vector2 dir = target - (Vector2)transform.position;
+            if (dir.sqrMagnitude < 0.0001f) return;
+            _animator.SetFloat(_moveXHash, dir.x);
+            _animator.SetFloat(_moveYHash, dir.y);
+            return;
+        }
         float dx = target.x - transform.position.x;
-        if (Mathf.Abs(dx) > 0.05f) _spriteRenderer.flipX = dx < 0f; // margen para que no parpadee en vertical
+        if (Mathf.Abs(dx) > 0.05f) _spriteRenderer.flipX = dx < 0f; // margin so it doesn't flicker when moving vertically
     }
 
     public void Stop() => _agent.isStopped = true;
@@ -52,7 +65,7 @@ private void OnDisable() => _health.OnDied -= HandleDied;
     {
         if (_knockback != null && _knockback.IsKnockedBack)
         {
-            _agent.nextPosition = _rigidbody.position; // dejamos que el golpe lo empuje
+            _agent.nextPosition = _rigidbody.position; // let the hit push it
             return;
         }
         _rigidbody.linearVelocity = _agent.isStopped ? Vector2.zero : (Vector2)_agent.desiredVelocity;
@@ -68,7 +81,7 @@ private void OnDisable() => _health.OnDied -= HandleDied;
         {
             _animator.SetFloat(_moveXHash, velocity.x);
             _animator.SetFloat(_moveYHash, velocity.y);
-            FaceTowards(_agent.steeringTarget); // próxima esquina de la ruta, no el destino final
+            FaceTowards(_agent.steeringTarget); // next corner of the path, not the final destination
         }
     }
 
@@ -77,4 +90,11 @@ private void OnDisable() => _health.OnDied -= HandleDied;
     _agent.enabled = false;
     enabled = false;
 }
+
+    // Subscribed in Awake, so it runs before EnemyAI's (subscribed in Start): the agent is back when the AI gives orders
+    private void HandleRevived()
+    {
+        _agent.enabled = true; // goes back onto the NavMesh where the body is
+        enabled = true;
+    }
 }

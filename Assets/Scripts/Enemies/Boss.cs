@@ -3,54 +3,54 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Jefe final (Shadow Demon Dragon).
-// De Enemy hereda la vida, la animación de daño y la muerte; acá le sumamos su propia IA:
-// duerme hasta que el jugador se acerca, lo persigue y ataca con un coletazo que además
-// lanza una onda de sombra. Por debajo de la mitad de la vida entra en fase 2:
-// camina más rápido, ataca más seguido y lanza tres ondas en abanico.
+// Final boss (Shadow Demon Dragon).
+// It inherits health, the hurt animation and death from Enemy; here we add its own AI:
+// it sleeps until the player gets close, chases them and attacks with a tail swipe that also
+// launches a shadow wave. Below half health it enters phase 2:
+// it walks faster, attacks more often and launches three waves in a fan.
 [RequireComponent(typeof(EnemyMovement), typeof(NavMeshAgent))]
 public class Boss : Enemy
 {
     private enum State { Dormant, Chase, Attack, Stagger, Dead }
 
-    [Header("Referencias")]
+    [Header("References")]
     [SerializeField] private EnemyMovement _movement;
-    [SerializeField] private Transform _waveOrigin;           // de dónde sale la onda, del lado derecho (se espeja al mirar a la izquierda)
+    [SerializeField] private Transform _waveOrigin;           // where the wave comes out, on the right side (mirrored when facing left)
     [SerializeField] private BossProjectile _wavePrefab;
     [SerializeField] private CinemachineImpulseSource _impulse;
-    [SerializeField] private AudioSource _audio;
+    // _audio now lives in Enemy (protected): its hurt/death sounds and the Boss's play from the same source
 
-    [Header("Detección")]
-    [SerializeField] private float _wakeRange = 8f;           // a esta distancia se despierta y ya no deja de perseguir
+    [Header("Detection")]
+    [SerializeField] private float _wakeRange = 8f;           // wakes up at this distance and never stops chasing
 
-    [Header("Ataque")]
-    [SerializeField] private float _meleeRange = 3f;          // distancia a la que frena y ataca
-    [SerializeField] private float _waveRange = 8f;           // desde más lejos ataca solo si la onda está lista
+    [Header("Attack")]
+    [SerializeField] private float _meleeRange = 3f;          // distance at which it stops and attacks
+    [SerializeField] private float _waveRange = 8f;           // from further away it only attacks if the wave is ready
     [SerializeField] private float _meleeDamage = 1f;
-    [SerializeField] private float _bodyHeight = 0.8f;        // centro del cuerpo sobre los pies (el pivot)
-    [SerializeField] private float _meleeReach = 1.6f;        // cuánto se adelanta el golpe hacia el jugador
+    [SerializeField] private float _bodyHeight = 0.8f;        // body center above the feet (the pivot)
+    [SerializeField] private float _meleeReach = 1.6f;        // how far the hit reaches towards the player
     [SerializeField] private float _meleeRadius = 1.5f;
-    [SerializeField] private float _attackDuration = 0.83f;   // largo del clip de ataque (10 frames a 12 fps)
+    [SerializeField] private float _attackDuration = 0.83f;   // attack clip length (10 frames at 12 fps)
     [SerializeField] private float _attackCooldown = 1.5f;
     [SerializeField] private float _waveCooldown = 4f;
     [SerializeField] private float _impactShake = 0.4f;
 
-    [Header("Fase 2")]
-    [SerializeField, Range(0f, 1f)] private float _phase2Threshold = 0.5f; // fracción de vida
+    [Header("Phase 2")]
+    [SerializeField, Range(0f, 1f)] private float _phase2Threshold = 0.5f; // fraction of health
     [SerializeField] private float _phase2SpeedMultiplier = 1.5f;
     [SerializeField] private float _phase2CooldownMultiplier = 0.6f;
     [SerializeField] private int _phase2Waves = 3;
-    [SerializeField] private float _waveSpreadAngle = 25f;    // grados entre ondas del abanico
+    [SerializeField] private float _waveSpreadAngle = 25f;    // degrees between the waves in the fan
 
-    [Header("Reacción al daño")]
-    [SerializeField] private float _staggerDuration = 1.25f;  // largo del clip de daño (30 frames a 24 fps)
-    [SerializeField] private float _staggerCooldown = 4f;     // un jefe no se interrumpe con cada golpe
+    [Header("Damage reaction")]
+    [SerializeField] private float _staggerDuration = 1.25f;  // hurt clip length (30 frames at 24 fps)
+    [SerializeField] private float _staggerCooldown = 4f;     // a boss isn't interrupted by every hit
 
-    [Header("Derrota")]
-    [SerializeField] private float _defeatDelay = 2f;         // deja ver la animación de muerte
-    [SerializeField] private GameObject[] _activateOnDefeat;  // ej.: la salida del nivel
+    [Header("Defeat")]
+    [SerializeField] private float _defeatDelay = 2f;         // lets the death animation play out
+    [SerializeField] private GameObject[] _activateOnDefeat;  // e.g. the level exit
 
-    [Header("Sonidos")]
+    [Header("Sounds")]
     [SerializeField] private AudioClip _wakeSound;
     [SerializeField] private AudioClip _attackSound;
     [SerializeField] private AudioClip _hitSound;
@@ -72,11 +72,11 @@ public class Boss : Enemy
 
     public bool IsAwake => _state != State.Dormant;
 
-    private float FacingSign => _spriteRenderer.flipX ? -1f : 1f; // EnemyMovement voltea con flipX
+    private float FacingSign => _spriteRenderer.flipX ? -1f : 1f; // EnemyMovement flips with flipX
 
     protected override void Start()
     {
-        base.Start(); // Enemy se suscribe a OnDamaged y OnDied
+        base.Start(); // Enemy subscribes to OnDamaged and OnDied
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindWithTag("Player").transform;
         _playerHealth = _player.GetComponent<HealthSystem>();
@@ -129,7 +129,7 @@ public class Boss : Enemy
         }
         else if (distance <= _meleeRange)
         {
-            _movement.Stop(); // ya está al lado: espera el cooldown mirando al jugador
+            _movement.Stop(); // already next to it: waits out the cooldown facing the player
             _movement.FaceTowards(_player.position);
         }
         else
@@ -150,7 +150,7 @@ public class Boss : Enemy
 
         _movement.Stop();
         _movement.FaceTowards(_player.position);
-        _attackDirection = ((Vector2)_player.position - BodyCenter).normalized; // el golpe va hacia donde estaba el jugador al empezar
+        _attackDirection = ((Vector2)_player.position - BodyCenter).normalized; // the hit goes where the player was when it started
         _animator.SetTrigger("_attack");
         Play(_attackSound);
     }
@@ -158,10 +158,10 @@ public class Boss : Enemy
     private Vector2 BodyCenter => (Vector2)transform.position + Vector2.up * _bodyHeight;
     private Vector2 MeleeCenter() => BodyCenter + _attackDirection * _meleeReach;
 
-    // Animation Event: frame del coletazo en ShadowDragon_attack_*
+    // Animation Event: tail swipe frame in ShadowDragon_attack_*
     public void AttackImpact()
     {
-        if (_state != State.Attack) return; // el golpe se canceló (murió en medio del ataque)
+        if (_state != State.Attack) return; // the hit was cancelled (it died mid-attack)
 
         Shake(_impactShake);
 
@@ -172,7 +172,7 @@ public class Boss : Enemy
             if (character == null) continue;
 
             character.GetComponent<HealthSystem>().TakeDamage(_meleeDamage, _attackDirection);
-            break; // el Character tiene dos colliders: un solo golpe
+            break; // the Character has two colliders: a single hit
         }
 
         if (_attackWithWave) LaunchWaves();
@@ -191,16 +191,16 @@ public class Boss : Enemy
         int count = _isPhase2 ? _phase2Waves : 1;
         for (int i = 0; i < count; i++)
         {
-            float angle = (i - (count - 1) / 2f) * _waveSpreadAngle; // 1 onda: 0°; 3 ondas: -25°, 0°, 25°
+            float angle = (i - (count - 1) / 2f) * _waveSpreadAngle; // 1 wave: 0°; 3 waves: -25°, 0°, 25°
             Vector2 direction = Quaternion.Euler(0f, 0f, angle) * aim;
             Instantiate(_wavePrefab, origin, Quaternion.identity).Launch(direction);
         }
     }
 
-    // Animation Event: pasos en ShadowDragon_walk_*
+    // Animation Event: footsteps in ShadowDragon_walk_*
     public void Footstep() => Play(_footstepSound, 0.6f);
 
-    // Animation Event: cuando el cuerpo toca el suelo en ShadowDragon_death_*
+    // Animation Event: when the body hits the ground in ShadowDragon_death_*
     public void DeathFall()
     {
         Play(_fallSound);
@@ -209,10 +209,10 @@ public class Boss : Enemy
 
     public override void TakeDamage(HealthSystem.DamageInfo damageInfo)
     {
-        if (damageInfo.CurrentHealth <= 0f) return; // el golpe final lo maneja Die
+        if (damageInfo.CurrentHealth <= 0f) return; // the final blow is handled by Die
         Play(_hitSound);
 
-        if (_state == State.Dormant) Wake(); // si lo atacan dormido, se despierta
+        if (_state == State.Dormant) Wake(); // if attacked while asleep, it wakes up
 
         if (!_isPhase2 && damageInfo.CurrentHealth <= damageInfo.MaxHealth * _phase2Threshold)
         {
@@ -220,7 +220,7 @@ public class Boss : Enemy
             return;
         }
 
-        // no interrumpe sus propios ataques y no se aturde con cada golpe
+        // doesn't interrupt its own attacks and isn't stunned by every hit
         if (_state == State.Attack || Time.time < _nextStaggerTime) return;
         Stagger();
     }
@@ -231,7 +231,7 @@ public class Boss : Enemy
         _stateEndTime = Time.time + _staggerDuration;
         _nextStaggerTime = _stateEndTime + _staggerCooldown;
         _movement.Stop();
-        base.TakeDamage(default); // Enemy dispara la animación de daño
+        base.TakeDamage(default); // Enemy triggers the hurt animation
     }
 
     private void EnterPhase2()
@@ -240,12 +240,12 @@ public class Boss : Enemy
         _agent.speed *= _phase2SpeedMultiplier;
         Play(_wakeSound);
         Shake(_impactShake * 2f);
-        Stagger(); // se sacude y vuelve más agresivo
+        Stagger(); // shakes it off and comes back more aggressive
     }
 
     protected override void Die()
     {
-        base.Die(); // animación de muerte, apaga la física y se desuscribe
+        base.Die(); // death animation, turns off physics and unsubscribes
         _state = State.Dead;
         Play(_deathSound);
         StartCoroutine(Defeat());

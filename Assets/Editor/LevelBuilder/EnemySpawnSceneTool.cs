@@ -1,12 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
-// Edición de waypoints en la Scene view cuando hay un EnemySpawn (o uno de sus waypoints) seleccionado:
-// arrastrar mueve, Shift+clic agrega al final, Ctrl+clic sobre un waypoint lo borra.
+// Waypoint editing in the Scene view when an EnemySpawn (or one of its waypoints) is selected:
+// dragging moves, Shift+click adds at the end, Ctrl+click on a waypoint deletes it.
 [InitializeOnLoad]
 public static class EnemySpawnSceneTool
 {
-    private const float PickDistance = 12f; // en píxeles
+    private const float PickDistance = 12f; // in pixels
 
     static EnemySpawnSceneTool() => SceneView.duringSceneGui += OnSceneGUI;
 
@@ -30,7 +30,7 @@ public static class EnemySpawnSceneTool
         bool adding = e.shift && !EditorGUI.actionKey;
         bool removing = EditorGUI.actionKey && !e.shift;
 
-        // con Shift o Ctrl apretado, el clic es nuestro y no cambia la selección
+        // with Shift or Ctrl held, the click is ours and doesn't change the selection
         if (e.type == EventType.Layout && (adding || removing)) HandleUtility.AddDefaultControl(controlId);
 
         var parent = spawn.transform;
@@ -43,7 +43,7 @@ public static class EnemySpawnSceneTool
             var moved = Handles.FreeMoveHandle(point.position, size, Vector3.zero, Handles.DotHandleCap);
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(point, "Mover waypoint");
+                Undo.RecordObject(point, "Move waypoint");
                 point.position = Snap(moved);
             }
             Handles.Label(point.position + new Vector3(0.2f, 0.35f), (i + 1).ToString(), EditorStyles.whiteBoldLabel);
@@ -67,10 +67,10 @@ public static class EnemySpawnSceneTool
     public static void AddWaypoint(EnemySpawn spawn, Vector3 position, bool select)
     {
         var waypoint = new GameObject($"WP{spawn.transform.childCount + 1}");
-        Undo.RegisterCreatedObjectUndo(waypoint, "Agregar waypoint");
-        Undo.SetTransformParent(waypoint.transform, spawn.transform, "Agregar waypoint");
+        Undo.RegisterCreatedObjectUndo(waypoint, "Add waypoint");
+        Undo.SetTransformParent(waypoint.transform, spawn.transform, "Add waypoint");
         waypoint.transform.position = position;
-        // un ícono para poder agarrarlo directo en la Scene view
+        // an icon so it can be grabbed directly in the Scene view
         EditorGUIUtility.SetIconForObject(waypoint, (Texture2D)EditorGUIUtility.IconContent("sv_icon_dot4_pix16_gizmo").image);
 
         if (select) Selection.activeGameObject = waypoint;
@@ -78,7 +78,7 @@ public static class EnemySpawnSceneTool
 
     private static void RemoveWaypoint(EnemySpawn spawn, Transform waypoint)
     {
-        // si borramos el waypoint seleccionado, la selección pasa al marcador para seguir editando
+        // if the selected waypoint is deleted, the selection moves to the marker to keep editing
         if (Selection.activeTransform == waypoint) Selection.activeGameObject = spawn.gameObject;
         Undo.DestroyObjectImmediate(waypoint.gameObject);
         Renumber(spawn);
@@ -91,7 +91,7 @@ public static class EnemySpawnSceneTool
             var child = spawn.transform.GetChild(i).gameObject;
             string name = $"WP{i + 1}";
             if (child.name == name) continue;
-            Undo.RecordObject(child, "Renombrar waypoint");
+            Undo.RecordObject(child, "Rename waypoint");
             child.name = name;
         }
     }

@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DungeonLevel03.unity
     guid: 81df9a53e9617e2468ebfcef40fe5cc7
+  - enabled: 1
+    path: Assets/Scenes/DungeonLevel04.unity
+    guid: 4c0a35e6dfcf6ee448f5b6843425e99b
+  - enabled: 1
+    path: Assets/Scenes/Outro.unity
+    guid: 90cee820f9201374ca579cfa82ba2c1d
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 87df27b507fa85b45a82bc5ea202db5d, type: 2}

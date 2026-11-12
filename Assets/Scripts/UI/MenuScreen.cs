@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Pantalla de menú navegable con teclado/gamepad: al mostrarse selecciona el primer botón,
-// lo recupera si se pierde la selección (clic en el fondo) y, si tiene cursor, lo pone
-// a la izquierda del botón seleccionado.
+// Menu screen navigable with keyboard/gamepad: when shown it selects the first button,
+// restores it if the selection is lost (click on the background) and, if it has a cursor, places it
+// to the left of the selected button.
 public class MenuScreen : MonoBehaviour
 {
     [SerializeField] private Selectable _firstSelected;
-    [SerializeField] private RectTransform _cursor; // opcional
+    [SerializeField] private RectTransform _cursor; // optional
     [SerializeField] private float _cursorGap = 2f;
 
     private void OnEnable() => SelectFirst();

@@ -104,6 +104,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton2
       objectReference: {fileID: 0}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: _hurtSounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e9705156ec1fb74ba4ddc03533ce00b, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f8390842baef1d428261b1323842ace, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 374e7d8750aa88641a45293904c15776, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 220c4cb3f844f9e4982f87a4e9a4837c, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 53f5b80404a26444ca31f97ae2451837, type: 3}
+    - target: {fileID: 5501234858311960817, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
+      propertyPath: '_hurtSounds.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e3a65ba00bedb24b9ca3f18dc60766d, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: _damage
       value: 2
@@ -115,27 +143,27 @@ PrefabInstance:
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: '_attackSounds.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 371216e090bfc8e409d98a5261da0eee, type: 3}
+      objectReference: {fileID: 8300000, guid: 36ed10020a7e1494da5eb7b957b2e532, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: '_attackSounds.Array.data[1]'
       value: 
-      objectReference: {fileID: 8300000, guid: 7cc690b9edfc1f84eb72980ce4a0fb1e, type: 3}
+      objectReference: {fileID: 8300000, guid: 4dc5af4c518aae4408adcfe82fbbac38, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: '_attackSounds.Array.data[2]'
       value: 
-      objectReference: {fileID: 8300000, guid: 2146fcf254f5ca348baec0fd7cc3f3e5, type: 3}
+      objectReference: {fileID: 8300000, guid: b0e3bae10ee1403469fb73afb39f03b8, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: '_attackSounds.Array.data[3]'
       value: 
-      objectReference: {fileID: 8300000, guid: a43be6c4d9937c14bb7b20b66952cfaa, type: 3}
+      objectReference: {fileID: 8300000, guid: a37a84f24278f9741986d48e443ada4d, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: '_attackSounds.Array.data[4]'
       value: 
-      objectReference: {fileID: 8300000, guid: f438fc6c6073597468b84dddb362b2a4, type: 3}
+      objectReference: {fileID: 8300000, guid: 5a6319afc9f8be34e88100266434d1ab, type: 3}
     - target: {fileID: 5649176519221013601, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: '_attackSounds.Array.data[5]'
       value: 
-      objectReference: {fileID: 8300000, guid: 1e3abbe286fcf25489ab5f349043774c, type: 3}
+      objectReference: {fileID: 8300000, guid: 051f5d087bee59641ac4724536389adb, type: 3}
     - target: {fileID: 7976393105088103698, guid: 8a7a803b0ecfa834690dd89a5cf5a847, type: 3}
       propertyPath: m_Size.x
       value: 2

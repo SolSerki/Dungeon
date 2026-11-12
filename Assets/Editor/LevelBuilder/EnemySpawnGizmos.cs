@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Lo que se ve de cada EnemySpawn en la Scene view: nombre, loot, rango de detección y ruta de patrulla
+// What each EnemySpawn shows in the Scene view: name, loot, detection range and patrol route
 public static class EnemySpawnGizmos
 {
     private static readonly Color MarkerColor = new Color(1f, 0.3f, 0.3f);
@@ -20,7 +20,7 @@ public static class EnemySpawnGizmos
         bool selected = EnemySpawnSceneTool.ActiveSpawn() == spawn;
         var position = spawn.transform.position;
 
-        // esfera clickeable para seleccionar el marcador desde la escena
+        // clickable sphere to select the marker from the scene
         Gizmos.color = new Color(MarkerColor.r, MarkerColor.g, MarkerColor.b, 0.25f);
         Gizmos.DrawSphere(position, 0.3f);
         Gizmos.color = MarkerColor;
@@ -28,9 +28,9 @@ public static class EnemySpawnGizmos
 
         var prefab = EnemySpawnBuilder.ResolvePrefab(spawn);
         _labelStyle ??= new GUIStyle(EditorStyles.boldLabel) { normal = { textColor = MarkerColor }, alignment = TextAnchor.MiddleCenter };
-        Handles.Label(position + Vector3.up * 0.75f, prefab != null ? prefab.name : "(sin prefab)", _labelStyle);
+        Handles.Label(position + Vector3.up * 0.75f, prefab != null ? prefab.name : "(no prefab)", _labelStyle);
 
-        // lo que suelta seguro, debajo del marcador
+        // guaranteed drops, below the marker
         var loot = spawn.Loot;
         if (loot != null && loot.Length > 0)
         {
@@ -50,7 +50,7 @@ public static class EnemySpawnGizmos
             }
         }
 
-        // ruta real por el NavMesh: inicio -> WP1 -> ... -> WPn -> WP1 (la patrulla es un bucle)
+        // real NavMesh path: start -> WP1 -> ... -> WPn -> WP1 (the patrol is a loop)
         var t = spawn.transform;
         int count = t.childCount;
         if (count == 0) return;
@@ -66,7 +66,7 @@ public static class EnemySpawnGizmos
 
     private static void DrawLeg(Vector3 from, Vector3 to, float alpha)
     {
-        // sin camino (fuera del NavMesh o sin hornear): línea roja punteada
+        // no path (off the NavMesh or not baked): dotted red line
         if (!NavMesh.CalculatePath(from, to, NavMesh.AllAreas, Path))
         {
             Handles.color = new Color(BrokenColor.r, BrokenColor.g, BrokenColor.b, alpha);
@@ -78,7 +78,7 @@ public static class EnemySpawnGizmos
         Handles.color = new Color(PathColor.r, PathColor.g, PathColor.b, alpha);
         Handles.DrawAAPolyLine(3f, corners);
 
-        // camino parcial: llega hasta donde puede y el resto queda en rojo
+        // partial path: goes as far as it can and the rest is red
         if (Path.status != NavMeshPathStatus.PathComplete)
         {
             Handles.color = new Color(BrokenColor.r, BrokenColor.g, BrokenColor.b, alpha);

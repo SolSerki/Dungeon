@@ -30,7 +30,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Hoja_ab
+    path: Leaf_Bottom
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -46,7 +46,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Hoja_ar
+    path: Leaf_Top
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -63,7 +63,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Hoja_ab
+    path: Leaf_Bottom
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -79,7 +79,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Hoja_ar
+    path: Leaf_Top
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -90,7 +90,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4220032378
+      path: 925599300
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -100,7 +100,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
       metaData: 0
     - serializedVersion: 2
-      path: 3862922526
+      path: 1577036375
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -110,7 +110,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
       metaData: 0
     - serializedVersion: 2
-      path: 4220032378
+      path: 925599300
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -120,7 +120,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
       metaData: 0
     - serializedVersion: 2
-      path: 3862922526
+      path: 1577036375
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -168,7 +168,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Hoja_ab
+    path: Leaf_Bottom
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -189,7 +189,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Hoja_ab
+    path: Leaf_Bottom
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -210,7 +210,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Hoja_ab
+    path: Leaf_Bottom
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -231,7 +231,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Hoja_ab
+    path: Leaf_Bottom
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -252,7 +252,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Hoja_ab
+    path: Leaf_Bottom
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -273,7 +273,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Hoja_ab
+    path: Leaf_Bottom
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -294,7 +294,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Hoja_ar
+    path: Leaf_Top
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -315,7 +315,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Hoja_ar
+    path: Leaf_Top
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -336,7 +336,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Hoja_ar
+    path: Leaf_Top
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -357,7 +357,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Hoja_ar
+    path: Leaf_Top
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -378,7 +378,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Hoja_ar
+    path: Leaf_Top
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -399,7 +399,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Hoja_ar
+    path: Leaf_Top
     classID: 4
     script: {fileID: 0}
     flags: 16

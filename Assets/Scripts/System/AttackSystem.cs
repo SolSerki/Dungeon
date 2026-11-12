@@ -11,9 +11,18 @@ public class AttackSystem : MonoBehaviour
     [SerializeField] private float _attackRadius = 0.5f;
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private LayerMask _enemyLayer;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource _audio;
+    [SerializeField] private AudioClip[] _attackSounds;   // plays on the same frame as the hit, whether it lands or not
+    [SerializeField, Range(0f, 1f)] private float _attackVolume = 0.6f;
+
     public event Action<Vector2> OnAttack;
 
+      // Called by an Animation Event on the hit frame
       public void Attack() {
+
+        Sfx.PlayRandom(_audio, _attackSounds, _attackVolume);
 
         Vector2 direction = (_attackPoint.position - transform.position).normalized;
         OnAttack?.Invoke(direction);

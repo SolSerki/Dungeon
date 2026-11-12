@@ -7,7 +7,7 @@ public class LootDropper : MonoBehaviour
     [Serializable]
     private struct Drop
     {
-        public GameObject Prefab;
+        public ItemData Item;
         [Range(0f, 1f)] public float Chance;
     }
 
@@ -24,10 +24,12 @@ public class LootDropper : MonoBehaviour
     {
         foreach (var drop in _drops)
         {
+            if (drop.Item == null || drop.Item.WorldPrefab == null) continue;
             if (UnityEngine.Random.value > drop.Chance) continue;
 
             Vector2 offset = UnityEngine.Random.insideUnitCircle * _scatterRadius;
-            Instantiate(drop.Prefab, (Vector2)transform.position + offset, Quaternion.identity);
+            var pickup = Instantiate(drop.Item.WorldPrefab, (Vector2)transform.position + offset, Quaternion.identity);
+            pickup.PlayDropSound();
         }
     }
 }

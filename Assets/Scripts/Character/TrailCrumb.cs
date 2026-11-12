@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-// Una "miga" de luz del rastro del sprint: nace con la intensidad y el tamaño del prefab
-// y se apaga y achica a lo largo de su vida. Cada miga lleva su propia edad, así que las
-// más viejas siempre se apagan antes que las nuevas.
+// A light "crumb" from the trail: it starts with the prefab's intensity and size
+// and fades and shrinks over its lifetime. Each crumb tracks its own age, so the
+// older ones always fade before the newer ones.
 [RequireComponent(typeof(Light2D))]
 public class TrailCrumb : MonoBehaviour
 {
     [SerializeField] private AnimationCurve _fade = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
-    [SerializeField, Range(0f, 1f)] private float _endScale = 0.5f; // tamaño final relativo al inicial
+    [SerializeField, Range(0f, 1f)] private float _endScale = 0.5f; // final size relative to the initial one
 
     private Light2D _light;
     private float _baseIntensity;

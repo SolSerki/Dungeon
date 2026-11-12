@@ -222,6 +222,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteGlowFollower
   _source: {fileID: 8424823181584904457}
+--- !u!1 &2005105298320347536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4378797897789369861}
+  - component: {fileID: 9198495615647055539}
+  m_Layer: 0
+  m_Name: FocusSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4378797897789369861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005105298320347536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1927493851401194501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9198495615647055539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005105298320347536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77cd142502ddecf4c9d7f71e295f3f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxLoop
+  _clips:
+  - {fileID: 8300000, guid: fedf8f4ae9dbbe5469a3b82a1c60552f, type: 3}
+  - {fileID: 8300000, guid: 4ebe54fce8b345e4c805d71544000444, type: 3}
+  - {fileID: 8300000, guid: b8b0dedbaab482e42b2a65705c77a3c1, type: 3}
+  - {fileID: 8300000, guid: 32d41d865f70b5f47a80b36fe5312f1f, type: 3}
+  - {fileID: 8300000, guid: 6046b7dfd3d634a4190472c0fc4a0e39, type: 3}
+  - {fileID: 8300000, guid: 2239e325517c91943b90586fec41c08d, type: 3}
+  _volume: 0.25
+  _overlap: 0.6
+  _fadeIn: 0.6
+  _fadeOut: 0.6
+  _swellAmount: 0.5
+  _swellSpeed: 2
 --- !u!1 &2549295838893679224
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,6 +5118,63 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1 &5662773395416936439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5100062650567406968}
+  - component: {fileID: 7211535626899483219}
+  m_Layer: 0
+  m_Name: TrailSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5100062650567406968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5662773395416936439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1927493851401194501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7211535626899483219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5662773395416936439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77cd142502ddecf4c9d7f71e295f3f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxLoop
+  _clips:
+  - {fileID: 8300000, guid: 44e3197f3278a6f4b88183d359055654, type: 3}
+  - {fileID: 8300000, guid: 62b97b5b7dfffca42bdd1c1ff77382c0, type: 3}
+  - {fileID: 8300000, guid: 26ec869639ae8654d8bf769f4fafa85d, type: 3}
+  - {fileID: 8300000, guid: 33a610a60899f874da37edede1da3444, type: 3}
+  - {fileID: 8300000, guid: acd6ce78bcd774540bb5f2b14cbbeb54, type: 3}
+  - {fileID: 8300000, guid: eb27aa983b691e745858f1fb88cfad03, type: 3}
+  _volume: 0.3
+  _overlap: 0.25
+  _fadeIn: 0.2
+  _fadeOut: 0.35
+  _swellAmount: 0
+  _swellSpeed: 1.5
 --- !u!1 &6838347307870420173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,6 +5285,8 @@ Transform:
   - {fileID: 4717391801544890469}
   - {fileID: 7929498205050696900}
   - {fileID: 3351066669772984320}
+  - {fileID: 4378797897789369861}
+  - {fileID: 5100062650567406968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8424823181584904457
@@ -5274,12 +5390,14 @@ MonoBehaviour:
   _health: {fileID: 4935025655257654192, guid: d957c5b0bbbf6a341b52c7ec7e6069bb, type: 3}
   _attack: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _mana: {fileID: 6631575012005487562}
-  _sprintManaCost: 25
-  _minManaToSprint: 15
   _light: {fileID: 4143948496920161391}
   _glowSpeed: 1
   _glowAmount: 0.1
+  _focusLightScale: 2
+  _focusSpeed: 6
+  _mana: {fileID: 6631575012005487562}
+  _focusManaCost: 25
+  _minManaToFocus: 15
   _audio: {fileID: 526485195413041292}
   _walkSounds:
   - {fileID: 8300000, guid: 15a9315c66e61564aa00317773648056, type: 3}
@@ -5315,6 +5433,7 @@ MonoBehaviour:
   _runVolume: 0.35
   _sprintStartVolume: 0.4
   _damageVolume: 0.8
+  _focusSound: {fileID: 9198495615647055539}
 --- !u!50 &277230185305131052
 Rigidbody2D:
   serializedVersion: 5
@@ -5458,6 +5577,15 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+  _audio: {fileID: 526485195413041292}
+  _attackSounds:
+  - {fileID: 8300000, guid: 7ef58ed7d129533459d231cb2d26ffd9, type: 3}
+  - {fileID: 8300000, guid: dfa3519fbbb3f2e45848937b2c9b6e74, type: 3}
+  - {fileID: 8300000, guid: 40bbfbefb005fa64f84d9768faf0c26f, type: 3}
+  - {fileID: 8300000, guid: ba87f98809351804783dc6d1b9bfd6d6, type: 3}
+  - {fileID: 8300000, guid: 4ba7fb881aa88a74aab61d2789090220, type: 3}
+  - {fileID: 8300000, guid: 0de98af485574a046852752873d4b225, type: 3}
+  _attackVolume: 0.6
 --- !u!114 &4354045959709231136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5596,6 +5724,10 @@ MonoBehaviour:
   _spacing: 0.6
   _lifetime: 2
   _poolSize: 20
+  _trailSound: {fileID: 7211535626899483219}
+  _mana: {fileID: 6631575012005487562}
+  _manaCost: 25
+  _minManaToStart: 15
 --- !u!114 &6631575012005487562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5630,7 +5762,6 @@ MonoBehaviour:
   _chargeTime: 1
   _cooldown: 0.3
   _damageDropDistance: 1.2
-  _damageDropLures: 0
   _spitDelay: 0
   _spitAnimLength: 0.25
   _audio: {fileID: 526485195413041292}

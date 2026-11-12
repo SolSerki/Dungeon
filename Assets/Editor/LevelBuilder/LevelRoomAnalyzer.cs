@@ -3,19 +3,21 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// Divide el piso en salas y cuenta qué enemigos hay en cada una.
-// Una sala es una zona donde hay celdas rodeadas de piso por los 8 lados: los pasillos de 1 o 2 tiles
-// no cumplen eso, así que separan salas; sus celdas se reparten a la sala más cercana.
+// Splits the floor into rooms and counts the enemies in each one.
+// A room is an area with cells surrounded by floor on all 8 sides: corridors 1 or 2 tiles wide
+// don't meet that, so they separate rooms; their cells go to the nearest room.
 public static class LevelRoomAnalyzer
 {
     public class Room
     {
         public int Number;
         public RectInt Bounds;
-        // nombres y no los EnemyAI: al entrar a Play mode Unity destruye los objetos y la lista quedaría rota
+        // names rather than the EnemyAI: entering Play mode destroys the objects and the list would break
         public readonly List<string> EnemyNames = new List<string>();
         public float TotalHealth;
         public bool HasPlayer;
+        // all the floor that belongs to it: the core, its edge and the nearest corridors
+        public readonly List<Vector2Int> Cells = new List<Vector2Int>();
     }
 
     private static readonly Vector2Int[] Neighbors4 = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
@@ -27,7 +29,7 @@ public static class LevelRoomAnalyzer
         foreach (var p in floor.cellBounds.allPositionsWithin)
             if (floor.HasTile(p)) cells.Add(new Vector2Int(p.x, p.y));
 
-        // 1. núcleos: celdas con piso alrededor, agrupadas en zonas conectadas
+        // 1. cores: cells with floor all around, grouped into connected areas
         var core = new HashSet<Vector2Int>(cells.Where(c => IsSurrounded(cells, c)));
         var coreId = new Dictionary<Vector2Int, int>();
         var coreBounds = new List<RectInt>();
@@ -50,11 +52,11 @@ public static class LevelRoomAnalyzer
                     if (core.Contains(n) && !coreId.ContainsKey(n)) { coreId[n] = id; stack.Push(n); }
                 }
             }
-            // el núcleo no incluye el anillo de borde de la sala: lo sumamos
+            // the core doesn't include the room's edge ring: add it
             coreBounds.Add(new RectInt(xMin - 1, yMin - 1, xMax - xMin + 3, yMax - yMin + 3));
         }
 
-        // 2. el resto del piso (bordes y pasillos) va a la sala más cercana caminando
+        // 2. the rest of the floor (edges and corridors) goes to the nearest room by walking distance
         var roomOf = new Dictionary<Vector2Int, int>(coreId);
         var queue = new Queue<Vector2Int>(coreId.Keys);
         while (queue.Count > 0)
@@ -67,12 +69,13 @@ public static class LevelRoomAnalyzer
             }
         }
 
-        // 3. numeradas de arriba hacia abajo y de izquierda a derecha
+        // 3. numbered top to bottom and left to right
         var order = Enumerable.Range(0, coreBounds.Count)
             .OrderByDescending(i => coreBounds[i].yMax).ThenBy(i => coreBounds[i].xMin).ToList();
         var rooms = new Room[coreBounds.Count];
         for (int n = 0; n < order.Count; n++)
             rooms[order[n]] = new Room { Number = n + 1, Bounds = coreBounds[order[n]] };
+        foreach (var (cell, id) in roomOf) rooms[id].Cells.Add(cell);
 
         foreach (var ai in Object.FindObjectsByType<EnemyAI>(FindObjectsInactive.Exclude))
         {

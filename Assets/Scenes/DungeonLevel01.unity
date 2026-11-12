@@ -172,7 +172,7 @@ MonoBehaviour:
   _health: {fileID: 1878528445}
   _heartPrefab: {fileID: 4500179657102152631, guid: 9a1da4fa50f788b42bbcbd0ad2af08a7, type: 3}
   _fullHeart: {fileID: 801451789778697559, guid: 6446c11935a2367448ec2506ed2bdcf4, type: 3}
-  _halfHeart: {fileID: -6309913810273450094, guid: 6446c11935a2367448ec2506ed2bdcf4, type: 3}
+  _halfHeart: {fileID: 21300000, guid: bb4c02b59885760488fd78d60409006e, type: 3}
   _emptyHeart: {fileID: -9094301929961256274, guid: 6446c11935a2367448ec2506ed2bdcf4, type: 3}
 --- !u!114 &151326362
 MonoBehaviour:
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Intensity: 0.1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000000fc91c38
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 907149597}
   - component: {fileID: 907149596}
   m_Layer: 0
-  m_Name: Escalera
+  m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1564,7 +1564,7 @@ GameObject:
   - component: {fileID: 907633391}
   - component: {fileID: 907633393}
   m_Layer: 0
-  m_Name: Piso
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2754,7 +2754,7 @@ MonoBehaviour:
   _seed: 1427145195
   _instance: {fileID: 1390577816}
   _loot:
-  - {fileID: 832152718906864986, guid: 95763ef514d38f943a841544377a8669, type: 3}
+  - {fileID: 11400000, guid: ee15501885e148b38ca9807df9f83c26, type: 2}
   _lootImported: 1
 --- !u!1 &1022376365
 GameObject:
@@ -3342,7 +3342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284044470}
   m_Layer: 0
-  m_Name: Enemigos
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3440,9 +3440,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3662958516112905793, guid: 7fcb50d2803beec4090972974b0c02bb, type: 3}
-      propertyPath: _drops.Array.data[0].Prefab
+      propertyPath: _drops.Array.data[0].Item
       value: 
-      objectReference: {fileID: 832152718906864986, guid: 95763ef514d38f943a841544377a8669, type: 3}
+      objectReference: {fileID: 11400000, guid: ee15501885e148b38ca9807df9f83c26, type: 2}
     - target: {fileID: 6524207571005460947, guid: 7fcb50d2803beec4090972974b0c02bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.35
@@ -3901,7 +3901,7 @@ GameObject:
   - component: {fileID: 2025461727}
   - component: {fileID: 2025461729}
   m_Layer: 6
-  m_Name: Paredes
+  m_Name: Walls
   m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6777,7 +6777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3606579516050277367, guid: 8044c935e61e14c4fb648679c3d0d0ef, type: 3}
       propertyPath: m_Name
-      value: Puerta_01
+      value: Door_01
       objectReference: {fileID: 0}
     - target: {fileID: 3606579516050277367, guid: 8044c935e61e14c4fb648679c3d0d0ef, type: 3}
       propertyPath: m_TagString

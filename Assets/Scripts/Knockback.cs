@@ -23,7 +23,7 @@ public class Knockback : MonoBehaviour
 
     private void Apply(DamageInfo info)
     {
-        _rigidbody.linearVelocity = Vector2.zero; // para que no se sume a la velocidad que traía
+        _rigidbody.linearVelocity = Vector2.zero; // so it doesn't add to the velocity it already had
         _rigidbody.AddForce(info.Direction * _force, ForceMode2D.Impulse);
         _endTime = Time.time + _duration;
     }

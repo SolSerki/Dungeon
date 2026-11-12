@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Acciones de escena para los botones de los menús (se cablean desde el OnClick del Button).
-// Vive dentro de cada pantalla, así los prefabs no necesitan referencias a objetos de la escena.
+// Scene actions for the menu buttons (wired up from the Button's OnClick).
+// It lives inside each screen, so the prefabs don't need references to scene objects.
 public class SceneLoader : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
-        Time.timeScale = 1f; // la pantalla de victoria pausa el juego
+        Time.timeScale = 1f; // the victory screen pauses the game
         SceneManager.LoadScene(sceneName);
     }
 

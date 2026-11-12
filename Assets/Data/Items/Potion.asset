@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b762c8aca16f40d7aa40007f98311c6b, type: 3}
+  m_Name: Potion
+  m_EditorClassIdentifier: Assembly-CSharp::PotionItem
+  _worldPrefab: {fileID: 3705814241997152818, guid: fdc83c2053652f942817d0deeacad01f, type: 3}
+  _dropSounds: []
+  _dropVolume: 0.6
+  _healAmount: 2

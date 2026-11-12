@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// Qué tile usa el Level Builder para cada caso. Los arrays se alternan según la posición.
+// Which tile the Level Builder uses for each case. Arrays alternate by position.
 [CreateAssetMenu(menuName = "Dungeon/Level Tile Rules")]
 public class LevelTileRules : ScriptableObject
 {
-    [Header("Piso: bordes")]
+    [Header("Floor: edges")]
     public TileBase floorTopLeft;
     public TileBase[] floorTop;
     public TileBase floorTopRight;
@@ -17,28 +17,28 @@ public class LevelTileRules : ScriptableObject
     public TileBase[] floorBottom;
     public TileBase floorBottomRight;
 
-    [Header("Piso: interior")]
-    public TileBase floorInterior; // reemplaza a un borde que quedó adentro al agrandar una sala
+    [Header("Floor: interior")]
+    public TileBase floorInterior; // replaces an edge that ended up inside after enlarging a room
 
-    [Header("Paredes")]
+    [Header("Walls")]
     public TileBase wallTopLeftEnd;
     public TileBase[] wallTop;
     public TileBase wallTopRightEnd;
     public TileBase wallBottomLeftEnd;
     public TileBase[] wallBottom;
     public TileBase wallBottomRightEnd;
-    public TileBase[] wallLeft;  // pared con piso a su derecha
-    public TileBase[] wallRight; // pared con piso a su izquierda
+    public TileBase[] wallLeft;  // wall with floor to its right
+    public TileBase[] wallRight; // wall with floor to its left
 
-    [Header("Esquinas y uniones")]
+    [Header("Corners and joins")]
     public TileBase cornerTopLeft;
     public TileBase cornerTopRight;
     public TileBase cornerBottomLeft;
     public TileBase cornerBottomRight;
-    public TileBase bottomJoinFloorRight; // pared de abajo con un pasillo a la derecha
-    public TileBase bottomJoinFloorLeft;  // pared de abajo con un pasillo a la izquierda
+    public TileBase bottomJoinFloorRight; // bottom wall with a corridor to the right
+    public TileBase bottomJoinFloorLeft;  // bottom wall with a corridor to the left
 
-    [Header("Relleno")]
+    [Header("Fill")]
     public TileBase voidTile;
 
     public bool IsFloorEdge(TileBase tile) =>
@@ -50,7 +50,7 @@ public class LevelTileRules : ScriptableObject
     public static TileBase Pick(TileBase[] tiles, int index) =>
         tiles == null || tiles.Length == 0 ? null : tiles[((index % tiles.Length) + tiles.Length) % tiles.Length];
 
-    // Valores por defecto para Dungeon_Tileset (índice = fila * 10 + columna)
+    // Defaults for Dungeon_Tileset (index = row * 10 + column)
     public void FillDungeonTilesetDefaults()
     {
         floorTopLeft = T(11); floorTop = Ts(12, 13); floorTopRight = T(14);

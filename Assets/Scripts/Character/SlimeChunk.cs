@@ -2,29 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-// Pedazo de slime: vuela en arco, cae, ilumina el piso y se apaga de a poco.
-// Si el slime lo pisa antes de que se apague, lo reabsorbe y se cura.
+// Slime chunk: flies in an arc, lands, lights the floor and fades out gradually.
+// If the slime steps on it before it fades, it reabsorbs it and heals.
 public class SlimeChunk : Pickup
 {
-    [SerializeField] private Transform _body;              // hijo con el sprite: sube y baja en el arco
+    [SerializeField] private Transform _body;              // child with the sprite: rises and falls along the arc
     [SerializeField] private SpriteRenderer _bodyRenderer;
-    [SerializeField] private SpriteRenderer _shadow;       // queda siempre en el piso
+    [SerializeField] private SpriteRenderer _shadow;       // always stays on the floor
     [SerializeField] private Light2D _light;
-    [SerializeField] private LayerMask _obstacleMask;      // paredes: el pedazo no las atraviesa
+    [SerializeField] private LayerMask _obstacleMask;      // walls: the chunk doesn't pass through them
     [SerializeField] private float _flightTime = 0.4f;
-    [SerializeField] private float _arcHeightPerUnit = 0.25f; // la altura del arco crece con la distancia
+    [SerializeField] private float _arcHeightPerUnit = 0.25f; // the arc height grows with distance
     [SerializeField] private float _minArcHeight = 0.3f;
     [SerializeField] private float _lifetime = 8f;
     [SerializeField] private AnimationCurve _fade = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
-    [SerializeField] private float _healAmount = 1f;       // medio corazón
-    [SerializeField] private float _pickupDelay = 0.5f;    // para no reabsorberlo apenas cae
+    [SerializeField] private float _healAmount = 1f;       // half a heart
+    [SerializeField] private float _pickupDelay = 0.5f;    // so it isn't reabsorbed right as it lands
 
-    [Header("Sonidos")]
+    [Header("Sounds")]
     [SerializeField] private AudioSource _audio;
-    [SerializeField] private AudioClip[] _landSounds;      // al chocar contra el piso
+    [SerializeField] private AudioClip[] _landSounds;      // when it hits the floor
     [SerializeField, Range(0f, 1f)] private float _landVolume = 0.5f;
 
-    // Pedazos que existen ahora: los enemigos los buscan acá en vez de usar FindObjectsByType cada frame
+    // Chunks that currently exist: enemies look them up here instead of calling FindObjectsByType every frame
     private static readonly List<SlimeChunk> _active = new();
     public static IReadOnlyList<SlimeChunk> Active => _active;
 
@@ -37,7 +37,23 @@ public class SlimeChunk : Pickup
     private float _shadowAlpha;
 
     public bool IsLanded => _landed;
-    public bool Lures { get; private set; } = true; // si atrae a los enemigos (distracción)
+
+    // A chunk distracts a single enemy: the first one that heads for it "claims" it
+    // and the others ignore it (they follow the slime if they see it).
+    public EnemyAI Claimant { get; private set; }
+    public bool IsClaimedByOther(EnemyAI enemy) => Claimant != null && Claimant != enemy;
+
+    public bool TryClaim(EnemyAI enemy)
+    {
+        if (IsClaimedByOther(enemy)) return false;
+        Claimant = enemy;
+        return true;
+    }
+
+    public void Release(EnemyAI enemy)
+    {
+        if (Claimant == enemy) Claimant = null;
+    }
 
     private void Awake()
     {
@@ -48,10 +64,10 @@ public class SlimeChunk : Pickup
     private void OnEnable() => _active.Add(this);
     private void OnDisable() => _active.Remove(this);
 
-    // Altura del arco para un tiro de esta distancia (la usa también la vista previa)
+    // Arc height for a throw of this distance (also used by the preview)
     public float ArcHeightFor(float distance) => Mathf.Max(_minArcHeight, distance * _arcHeightPerUnit);
 
-    // Dónde cae de verdad: si hay una pared en el camino, justo antes (la usa también la vista previa)
+    // Where it actually lands: if there's a wall in the way, just before it (also used by the preview)
     public Vector2 ResolveTarget(Vector2 from, Vector2 target)
     {
         Vector2 delta = target - from;
@@ -61,16 +77,15 @@ public class SlimeChunk : Pickup
         return hit.collider != null ? hit.point - delta.normalized * 0.2f : target;
     }
 
-    // Punto del arco en t (0..1): posición en el piso + altura de la parábola
+    // Arc point at t (0..1): floor position + parabola height
     public static Vector2 ArcPoint(Vector2 from, Vector2 to, float t, float arcHeight) =>
         Vector2.Lerp(from, to, t) + Vector2.up * HeightAt(t, arcHeight);
 
-    // Parábola: 0 al salir, arcHeight a mitad de camino, 0 al caer
+    // Parabola: 0 at launch, arcHeight halfway, 0 on landing
     private static float HeightAt(float t, float arcHeight) => 4f * arcHeight * t * (1f - t);
 
-    public void Launch(Vector2 from, Vector2 target, bool lures = true)
+    public void Launch(Vector2 from, Vector2 target)
     {
-        Lures = lures;
         _from = from;
         _to = ResolveTarget(from, target);
         _arcHeight = ArcHeightFor(Vector2.Distance(_from, _to));
@@ -117,11 +132,11 @@ public class SlimeChunk : Pickup
 
     protected override bool Collect(Character character)
     {
-        // En el aire o recién caído no se agarra: hay que salir y volver a pisarlo
+        // In the air or just landed it can't be picked up: step off and back on it
         if (!_landed || _age < _pickupDelay) return false;
 
         var health = character.GetComponent<HealthSystem>();
-        if (health.CurrentHealth >= health.MaxHealth) return false; // con vida llena se queda, como la poción
+        if (health.CurrentHealth >= health.MaxHealth) return false; // at full health it stays, like the potion
 
         health.Heal(_healAmount);
         return true;

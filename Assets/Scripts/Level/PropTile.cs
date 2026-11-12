@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// Tile normal que además copia el espejado/rotación del tile al GameObject que
-// instancia (Unity solo lo posiciona en la celda). Así la luz de una antorcha
-// volteada queda del lado correcto.
-// Opcionalmente anima el sprite (como un AnimatedTile) sin perder el prefab
-// instanciado: AnimatedTile de Tilemap Extras no tiene campo de GameObject.
+// Regular tile that also copies the tile's flip/rotation to the GameObject it
+// instantiates (Unity only positions it in the cell). That way a flipped torch's
+// light ends up on the right side.
+// Optionally animates the sprite (like an AnimatedTile) without losing the instantiated
+// prefab: Tilemap Extras' AnimatedTile has no GameObject field.
 [CreateAssetMenu(menuName = "2D/Tiles/Prop Tile")]
 public class PropTile : Tile
 {
-    [Header("Animación (opcional)")]
-    [Tooltip("Frames de la animación. Vacío = sprite estático.")]
+    [Header("Animation (optional)")]
+    [Tooltip("Animation frames. Empty = static sprite.")]
     [SerializeField] private Sprite[] animatedSprites;
-    [Tooltip("Frames por segundo.")]
+    [Tooltip("Frames per second.")]
     [SerializeField, Min(0.01f)] private float animationSpeed = 12f;
-    [Tooltip("Arranca cada celda en un frame distinto para que no titilen todas a la vez.")]
+    [Tooltip("Starts each cell on a different frame so they don't all flicker in sync.")]
     [SerializeField] private bool randomizeStartFrame = true;
 
     public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
@@ -30,8 +30,8 @@ public class PropTile : Tile
         return true;
     }
 
-    // Hash de la celda: el desfase es aleatorio entre celdas pero estable entre
-    // recargas (no cambia cada vez que se refresca el tilemap).
+    // Cell hash: the offset is random across cells but stable across
+    // reloads (it doesn't change every time the tilemap refreshes).
     private static int StartFrameFor(Vector3Int position, int frameCount)
     {
         unchecked
@@ -48,9 +48,9 @@ public class PropTile : Tile
         return base.StartUp(position, tilemap, go);
     }
 
-    // matrix.rotation no sirve con espejados: devuelve un giro de 180° en Y que,
-    // sumado a la escala negativa, anula el flip. Se descompone a mano en 2D:
-    // espejado en X + giro en Z.
+    // matrix.rotation doesn't work with flips: it returns a 180° turn around Y that,
+    // combined with the negative scale, cancels the flip. It's decomposed by hand in 2D:
+    // flip on X + rotation on Z.
     private static void ApplyTileMatrix(Transform target, Matrix4x4 matrix)
     {
         Vector2 axisX = matrix.GetColumn(0);

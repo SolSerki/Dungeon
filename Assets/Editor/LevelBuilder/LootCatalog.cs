@@ -2,32 +2,32 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-// Los objetos que se pueden asignar como loot: todo prefab con un Pickup en Assets/Prefabs/Items.
-// Para sumar uno nuevo alcanza con crear el prefab en esa carpeta.
+// Items that can be assigned as loot: every ItemData asset in Assets/Data/Items.
+// To add a new one, create it there (Create > Dungeon > Items).
 [InitializeOnLoad]
 public static class LootCatalog
 {
-    private const string ItemsFolder = "Assets/Prefabs/Items";
+    public const string ItemsFolder = "Assets/Data/Items";
 
-    private static GameObject[] _items;
+    private static ItemData[] _items;
 
     static LootCatalog() => EditorApplication.projectChanged += () => _items = null;
 
-    public static GameObject[] Items
+    public static ItemData[] Items
     {
         get
         {
             if (_items == null || _items.Any(i => i == null))
             {
-                _items = AssetDatabase.FindAssets("t:Prefab", new[] { ItemsFolder })
-                    .Select(guid => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid)))
-                    .Where(go => go.GetComponent<Pickup>() != null)
-                    .OrderBy(go => go.name)
+                _items = AssetDatabase.FindAssets($"t:{nameof(ItemData)}", new[] { ItemsFolder })
+                    .Select(guid => AssetDatabase.LoadAssetAtPath<ItemData>(AssetDatabase.GUIDToAssetPath(guid)))
+                    .Where(item => item != null)
+                    .OrderBy(item => item.name)
                     .ToArray();
             }
             return _items;
         }
     }
 
-    public static bool IsKey(GameObject prefab) => prefab != null && prefab.GetComponent<KeyPickup>() != null;
+    public static bool IsKey(ItemData item) => item is KeyItem;
 }

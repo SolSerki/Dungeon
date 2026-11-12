@@ -12,34 +12,85 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _detectRange = 4f;
     [SerializeField] private float _loseSightTime = 2f;
-    [SerializeField] private float _chunkDetectRange = 4f;   // desde qué distancia ve un pedazo de slime
-    [SerializeField] private float _chunkStopDistance = 0.5f; // se queda a esta distancia del pedazo
+    [SerializeField] private float _chunkDetectRange = 4f;   // distance from which it sees a slime chunk
+    [SerializeField] private float _chunkStopDistance = 0.5f; // stays at this distance from the chunk
 
     private HealthSystem _playerHealth;
     private Transform _player;
     [SerializeField] private State _state;
     private int _patrolIndex = 0;
     private float _lastSeenTime = -Mathf.Infinity;
-    private SlimeChunk _chunk; // el pedazo que lo está distrayendo
+    private SlimeChunk _chunk; // the chunk distracting it
+    private Vector2? _seamTarget; // maze seam the slime left through
 
-    // con un solo punto no hay a dónde patrullar
+    // with a single point there's nowhere to patrol
     private State DefaultState => _patrolPoints.Count > 1 ? State.Patrol : State.Idle;
 
-    private void OnEnable() => _health.OnDied += HandleDied;
-    private void OnDisable() => _health.OnDied -= HandleDied;
-    private void HandleDied() => enabled = false;
+    private void OnEnable()
+    {
+        _health.OnDied += HandleDied;
+        PortalSeam.Warped += OnWarped;
+    }
+
+    private void OnDisable()
+    {
+        _health.OnDied -= HandleDied;
+        PortalSeam.Warped -= OnWarped;
+    }
+
+    private void OnDestroy()
+    {
+        ReleaseChunk();
+        _health.OnRevived -= HandleRevived;
+    }
+
+    private void HandleDied()
+    {
+        ReleaseChunk(); // when dead it frees the chunk for another enemy
+        enabled = false;
+    }
+
+    // A Ghost revived it: starts over as if it had just spawned
+    private void HandleRevived()
+    {
+        enabled = true;
+        _lastSeenTime = -Mathf.Infinity;
+        EnterState(DefaultState);
+    }
+
+    private void ReleaseChunk()
+    {
+        if (_chunk != null) _chunk.Release(this);
+        _chunk = null;
+    }
+
+    // If the slime escapes through a seam while being chased, go to the seam and cross it
+    // too (PortalSeam teleports on contact). On the other side it can see the slime again.
+    private void OnWarped(PortalSeam seam, Rigidbody2D rb, Vector2 delta)
+    {
+        if (rb.gameObject == gameObject)
+        {
+            _seamTarget = null;
+            _lastSeenTime = Time.time; // just crossed: give it a moment to spot the slime again
+        }
+        else if (_player != null && rb.transform == _player && (_state == State.Chase || _state == State.Attack))
+        {
+            ChangeState(State.Chase);         // if it was about to hit, now it has to follow
+            _seamTarget = seam.ChasePoint;    // after ChangeState: entering another state clears it
+        }
+    }
 
     private bool HasLineOfSight(Vector2 target) =>
         !Physics2D.Linecast(transform.position, target, _obstacleMask);
 
-    // El pedazo de slime (ya en el piso) más cercano que esté en rango y a la vista
+    // The nearest slime chunk (already on the floor) that is in range, in sight and unclaimed
     private SlimeChunk FindChunk()
     {
         SlimeChunk best = null;
         float bestDistance = _chunkDetectRange;
         foreach (var chunk in SlimeChunk.Active)
         {
-            if (!chunk.IsLanded || !chunk.Lures) continue;
+            if (!chunk.IsLanded || chunk.IsClaimedByOther(this)) continue; // another enemy is already watching it
             Vector2 pos = chunk.transform.position;
             float d = Vector2.Distance(transform.position, pos);
             if (d > bestDistance || !HasLineOfSight(pos)) continue;
@@ -53,12 +104,13 @@ public class EnemyAI : MonoBehaviour
     {
         _player = GameObject.FindWithTag("Player").transform;
         _playerHealth = _player.GetComponent<HealthSystem>();
-        EnterState(DefaultState); // directo, sin el chequeo de ChangeState: _state puede venir del Inspector
+        EnterState(DefaultState); // direct, without ChangeState's check: _state may come from the Inspector
+        _health.OnRevived += HandleRevived; // in Start, after EnemyMovement's (Awake): its agent is already back on
     }
 
     private void Update()
     {
-        if (_attack.IsAttacking) return; // termina el golpe antes de decidir otra cosa
+        if (_attack.IsAttacking) return; // finish the hit before deciding anything else
 
         float distance = Vector2.Distance(transform.position, _player.position);
         bool canSee = !_playerHealth.IsDead && distance <= _detectRange && HasLineOfSight(_player.position);
@@ -67,11 +119,11 @@ public class EnemyAI : MonoBehaviour
         if (_playerHealth.IsDead && (_state == State.Chase || _state == State.Attack))
             ChangeState(DefaultState);
 
-        // Un pedazo de slime a la vista le gana a todo menos a un golpe en curso
+        // A visible slime chunk beats everything except a hit in progress
         if (_state != State.Attack && _state != State.Distracted)
         {
             var chunk = FindChunk();
-            if (chunk != null)
+            if (chunk != null && chunk.TryClaim(this))
             {
                 _chunk = chunk;
                 ChangeState(State.Distracted);
@@ -94,10 +146,12 @@ public class EnemyAI : MonoBehaviour
         EnterState(newState);
     }
 
-    // acciones que pasan una sola vez al entrar al estado
+    // actions that happen only once on entering the state
     private void EnterState(State newState)
     {
+        if (_state == State.Distracted && newState != State.Distracted) ReleaseChunk();
         _state = newState;
+        if (newState != State.Chase) _seamTarget = null;
         switch (newState)
         {
             case State.Idle:
@@ -105,7 +159,7 @@ public class EnemyAI : MonoBehaviour
                 _movement.Stop();
                 break;
             case State.Patrol:
-                _movement.MoveTo(_patrolPoints[_patrolIndex].position); // retoma el punto al que iba
+                _movement.MoveTo(_patrolPoints[_patrolIndex].position); // resumes the point it was heading to
                 break;
             case State.Distracted:
                 _movement.MoveTo(_chunk.transform.position);
@@ -129,6 +183,18 @@ public class EnemyAI : MonoBehaviour
 
     private void UpdateChase(float distance)
     {
+        // Chasing it to the seam: doesn't give up until it arrives (the seam carries it across)
+        if (_seamTarget.HasValue)
+        {
+            _movement.MoveTo(_seamTarget.Value);
+            if (_movement.HasArrived && Vector2.Distance(transform.position, _seamTarget.Value) < 0.75f)
+            {
+                _seamTarget = null; // arrived but didn't cross (shouldn't happen): back to the normal chase
+                _lastSeenTime = Time.time;
+            }
+            return;
+        }
+
         if (Time.time - _lastSeenTime > _loseSightTime) ChangeState(DefaultState);
         else if (distance <= _attack.Range) ChangeState(State.Attack);
         else _movement.MoveTo(_player.position);
@@ -141,11 +207,11 @@ public class EnemyAI : MonoBehaviour
         _attack.TryAttack(_player.position);
     }
 
-    // Va hacia el pedazo y se queda mirándolo hasta que se apaga o el slime lo reabsorbe.
-    // Si el slime se le pone a tiro mientras tanto, lo ataca.
+    // Goes to the chunk and stays watching it until it fades or the slime reabsorbs it.
+    // If the slime comes within reach meanwhile, it attacks.
     private void UpdateDistracted(float distance, bool canSee)
     {
-        if (_chunk == null) // se destruyó
+        if (_chunk == null) // it was destroyed
         {
             ChangeState(canSee ? State.Chase : DefaultState);
             return;
@@ -158,7 +224,7 @@ public class EnemyAI : MonoBehaviour
 
         Vector2 chunkPos = _chunk.transform.position;
         bool close = Vector2.Distance(transform.position, chunkPos) <= _chunkStopDistance;
-        if (close || _movement.HasArrived) // HasArrived: si no llega del todo (borde del NavMesh), se queda lo más cerca posible
+        if (close || _movement.HasArrived) // HasArrived: if it can't quite get there (NavMesh edge), it stays as close as possible
         {
             _movement.Stop();
             _movement.FaceTowards(chunkPos);

@@ -3,7 +3,7 @@ using NavMeshPlus.Components;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-// Hornea el NavMesh en un asset propio de la escena: Assets/Scenes/<Escena>/NavMesh-<Objeto>.asset
+// Bakes the NavMesh into an asset owned by the scene: Assets/Scenes/<Scene>/NavMesh-<Object>.asset
 public static class LevelNavMeshBaker
 {
     public static void Bake(NavMeshSurface surface, LevelBuildReport report)
@@ -11,7 +11,7 @@ public static class LevelNavMeshBaker
         var scene = surface.gameObject.scene;
         if (string.IsNullOrEmpty(scene.path))
         {
-            report.Warn("Guardá la escena antes de hornear: el NavMesh se guarda en una carpeta con su nombre.");
+            report.Warn("Save the scene before baking: the NavMesh is stored in a folder named after it.");
             return;
         }
 
@@ -19,22 +19,22 @@ public static class LevelNavMeshBaker
         string folder = $"{parent}/{scene.name}";
         string path = $"{folder}/NavMesh-{surface.name}.asset";
 
-        // Una escena duplicada sigue apuntando al NavMesh de la original. El Bake de NavMeshPlus
-        // borra el asset al que apunta, así que lo desvinculamos antes para no romper el otro nivel.
+        // A duplicated scene still points at the original's NavMesh. NavMeshPlus's Bake
+        // deletes the asset it points at, so unlink it first to avoid breaking the other level.
         var old = surface.navMeshData;
         string oldPath = old != null ? AssetDatabase.GetAssetPath(old) : null;
         if (!string.IsNullOrEmpty(oldPath) && oldPath != path)
-            report.Info($"El NavMesh apuntaba a {oldPath}; ese asset no se tocó.");
+            report.Info($"The NavMesh pointed at {oldPath}; that asset was left untouched.");
 
         surface.RemoveData();
         surface.navMeshData = null;
         surface.BuildNavMesh();
 
         if (!AssetDatabase.IsValidFolder(folder)) AssetDatabase.CreateFolder(parent, scene.name);
-        AssetDatabase.CreateAsset(surface.navMeshData, path); // reemplaza el de esta escena si ya existía
+        AssetDatabase.CreateAsset(surface.navMeshData, path); // replaces this scene's one if it already existed
 
         EditorUtility.SetDirty(surface);
         EditorSceneManager.MarkSceneDirty(scene);
-        report.Info($"NavMesh horneado en {path}.");
+        report.Info($"NavMesh baked to {path}.");
     }
 }

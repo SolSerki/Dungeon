@@ -1,17 +1,17 @@
 using UnityEngine;
 
-// Barra de vida roja sobre la cabeza del enemigo.
-// Hay un sprite por cada píxel de relleno (0 = vacía ... el último = llena), así el corte
-// siempre cae en un píxel entero y mantiene el borde inclinado de la barra original.
-// Aparece con el primer golpe y desaparece cuando el enemigo muere.
+// Red health bar above the enemy's head.
+// There's one sprite per fill pixel (0 = empty ... the last = full), so the cut
+// always lands on a whole pixel and keeps the original bar's slanted edge.
+// It shows up on the first hit and disappears when the enemy dies.
 [RequireComponent(typeof(SpriteRenderer))]
 public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] private HealthSystem _health;
-    [SerializeField] private Sprite[] _frames;           // EnemyHealthBar_0 .. EnemyHealthBar_16, en orden
-    [SerializeField] private bool _hideWhenFull = true;  // con la vida llena no se muestra
-    [SerializeField] private float _visibleTime = 3f;    // se esconde tras estos segundos sin cambios (0 = siempre visible)
-                                                         // así no delata a los enemigos que quedaron en la oscuridad
+    [SerializeField] private Sprite[] _frames;           // EnemyHealthBar_0 .. EnemyHealthBar_16, in order
+    [SerializeField] private bool _hideWhenFull = true;  // hidden at full health
+    [SerializeField] private float _visibleTime = 3f;    // hides after this many seconds without changes (0 = always visible)
+                                                         // so it doesn't give away enemies left in the dark
 
     private SpriteRenderer _renderer;
     private float _hideAt;
@@ -40,7 +40,7 @@ public class EnemyHealthBar : MonoBehaviour
     {
         Refresh(_health.CurrentHealth, _health.MaxHealth);
         if (_health.CurrentHealth < _health.MaxHealth) return;
-        Hide(); // al empezar no se muestra aunque _hideWhenFull esté apagado: espera al primer golpe
+        Hide(); // hidden on start even if _hideWhenFull is off: waits for the first hit
     }
 
     private void Update()
@@ -60,7 +60,7 @@ public class EnemyHealthBar : MonoBehaviour
 
         float t = max > 0f ? Mathf.Clamp01(current / max) : 0f;
         int last = _frames.Length - 1;
-        // Mientras esté vivo siempre se ve al menos un píxel rojo
+        // While alive, at least one red pixel always shows
         int index = t <= 0f ? 0 : Mathf.Max(1, Mathf.CeilToInt(t * last));
 
         _renderer.sprite = _frames[index];

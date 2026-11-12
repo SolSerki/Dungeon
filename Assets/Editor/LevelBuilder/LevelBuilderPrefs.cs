@@ -1,6 +1,6 @@
 using UnityEditor;
 
-// Opciones del Level Builder que se recuerdan entre sesiones (por usuario, no van al proyecto)
+// Level Builder options remembered between sessions (per user, not stored in the project)
 public static class LevelBuilderPrefs
 {
     private const string Prefix = "Dungeon.LevelBuilder.";

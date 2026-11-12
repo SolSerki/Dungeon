@@ -3,8 +3,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// Revisa que las llaves alcancen para las puertas, probando todos los órdenes en que el jugador puede abrirlas.
-// El piso se divide en zonas separadas por las puertas cerradas; cada puerta cuesta una llave y abre las zonas que toca.
+// Checks there are enough keys for the doors, trying every order in which the player can open them.
+// The floor is split into zones separated by locked doors; each door costs one key and opens the zones it touches.
 public static class LevelKeyValidator
 {
     private const int MaxStates = 50000;
@@ -28,7 +28,7 @@ public static class LevelKeyValidator
             .ToList();
         if (doors.Count > 63)
         {
-            report.Info("Hay demasiadas puertas para revisar las llaves.");
+            report.Info("Too many doors to check the keys.");
             return;
         }
 
@@ -38,13 +38,13 @@ public static class LevelKeyValidator
                 foreach (var d in Neighbors4)
                     if (zoneOf.TryGetValue(cell + d, out int zone)) door.Zones.Add(zone);
 
-        if (!zoneOf.TryGetValue(ToCell(floor, player.transform.position), out int start)) return; // ya avisa EnemySpawnBuilder
+        if (!zoneOf.TryGetValue(ToCell(floor, player.transform.position), out int start)) return; // EnemySpawnBuilder already warns about it
 
         var keysInZone = CountKeys(floor, zoneOf, report);
         Search(doors, keysInZone, start, report);
     }
 
-    // Zonas conectadas del piso, con las puertas como paredes
+    // Connected floor zones, with doors acting as walls
     private static Dictionary<Vector2Int, int> SplitZones(Tilemap floor, List<Door> doors)
     {
         var blocked = new HashSet<Vector2Int>(doors.SelectMany(d => d.Cells));
@@ -72,35 +72,58 @@ public static class LevelKeyValidator
             }
             next++;
         }
+
+        // Maze seams (tunnels and pocket mouths) join the zone on one side with the one on the other
+        var root = Enumerable.Range(0, next).ToArray();
+        int Find(int z)
+        {
+            while (root[z] != z) z = root[z] = root[root[z]];
+            return z;
+        }
+        Vector2Int Inside(PortalSeam s) => Vector2Int.FloorToInt((Vector2)s.transform.position - s.Forward.normalized * 0.5f);
+        bool merged = false;
+        foreach (var seam in Object.FindObjectsByType<PortalSeam>(FindObjectsInactive.Exclude))
+        {
+            if (seam.Partner == null) continue;
+            if (!zoneOf.TryGetValue(Inside(seam), out int a) || !zoneOf.TryGetValue(Inside(seam.Partner), out int b)) continue;
+            a = Find(a);
+            b = Find(b);
+            if (a == b) continue;
+            root[a] = b;
+            merged = true;
+        }
+        if (merged)
+            foreach (var cell in zoneOf.Keys.ToList()) zoneOf[cell] = Find(zoneOf[cell]);
+
         return zoneOf;
     }
 
-    // Llaves que caen seguro de enemigos y llaves sueltas en el piso
+    // Keys guaranteed to drop from enemies and keys lying on the floor
     private static Dictionary<int, int> CountKeys(Tilemap floor, Dictionary<Vector2Int, int> zoneOf, LevelBuildReport report)
     {
         var keys = new Dictionary<int, int>();
         void Add(Transform at, string what)
         {
             if (zoneOf.TryGetValue(ToCell(floor, at.position), out int zone)) keys[zone] = keys.TryGetValue(zone, out int n) ? n + 1 : 1;
-            else report.Warn($"{what} está fuera del piso o encima de una puerta: no la cuento.", at);
+            else report.Warn($"{what} is off the floor or on top of a door: not counted.", at);
         }
 
         foreach (var dropper in Object.FindObjectsByType<LootDropper>(FindObjectsInactive.Exclude))
         {
-            foreach (var (prefab, chance) in EnemySpawnBuilder.ReadDrops(dropper))
+            foreach (var (item, chance) in EnemySpawnBuilder.ReadDrops(dropper))
             {
-                if (!LootCatalog.IsKey(prefab)) continue;
-                if (chance < 1f) report.Warn($"{dropper.name} suelta {prefab.name} con chance {chance:0.##}: puede no caer, no la cuento.", dropper);
-                else Add(dropper.transform, $"La llave de {dropper.name}");
+                if (!LootCatalog.IsKey(item)) continue;
+                if (chance < 1f) report.Warn($"{dropper.name} drops {item.name} with chance {chance:0.##}: it might not drop, not counted.", dropper);
+                else Add(dropper.transform, $"{dropper.name}'s key");
             }
         }
-        foreach (var key in Object.FindObjectsByType<KeyPickup>(FindObjectsInactive.Exclude))
+        foreach (var key in Object.FindObjectsByType<ItemPickup>(FindObjectsInactive.Exclude).Where(p => LootCatalog.IsKey(p.Item)))
             Add(key.transform, key.name);
 
         return keys;
     }
 
-    // Recorre todas las combinaciones de puertas abiertas a las que el jugador puede llegar
+    // Walks every combination of opened doors the player can reach
     private static void Search(List<Door> doors, Dictionary<int, int> keysInZone, int start, LevelBuildReport report)
     {
         int Keys(ulong opened)
@@ -141,21 +164,21 @@ public static class LevelKeyValidator
         }
 
         int totalKeys = keysInZone.Values.Sum();
-        report.Info($"Llaves: {totalKeys} para {doors.Count} puertas.");
-        if (parent.Count >= MaxStates) report.Info("Hay muchas combinaciones de puertas: revisé solo una parte.");
+        report.Info($"Keys: {totalKeys} for {doors.Count} doors.");
+        if (parent.Count >= MaxStates) report.Info("Too many door combinations: only some were checked.");
 
         var reachable = Reached(doors, AllBits(openable), start);
         for (int i = 0; i < doors.Count; i++)
         {
             if (openable[i]) continue;
             if (doors[i].Zones.Overlaps(reachable))
-                report.Warn($"{doors[i].Target.name}: no hay llave para abrirla. Marcá una llave en el loot de un enemigo que esté antes de esta puerta.", doors[i].Target);
+                report.Warn($"{doors[i].Target.name}: there's no key to open it. Tick a key in the loot of an enemy placed before this door.", doors[i].Target);
             else
-                report.Warn($"{doors[i].Target.name}: no se puede llegar desde el inicio.", doors[i].Target);
+                report.Warn($"{doors[i].Target.name}: can't be reached from the start.", doors[i].Target);
         }
 
-        // trabado: sin llaves frente a una puerta que en otro orden sí se podía abrir.
-        // La búsqueda va por niveles, así que el primero es el que abre menos puertas.
+        // stuck: no keys left in front of a door that could be opened in another order.
+        // The search goes level by level, so the first one found opens the fewest doors.
         foreach (var (stuck, frontier) in stuckStates)
         {
             var blocked = frontier.Where(i => openable[i]).ToList();
@@ -163,7 +186,7 @@ public static class LevelKeyValidator
 
             var path = new List<string>();
             for (ulong s = stuck; parent[s].door >= 0; s = parent[s].from) path.Insert(0, doors[parent[s].door].Target.name);
-            report.Warn($"El jugador se puede trabar: si abre {string.Join(" y después ", path)}, se queda sin llaves para {string.Join(", ", blocked.Select(i => doors[i].Target.name))}.",
+            report.Warn($"The player can get stuck: if they open {string.Join(" and then ", path)}, they run out of keys for {string.Join(", ", blocked.Select(i => doors[i].Target.name))}.",
                 doors[blocked[0]].Target);
             break;
         }
@@ -171,7 +194,7 @@ public static class LevelKeyValidator
 
     private static HashSet<int> Reached(List<Door> doors, ulong opened, int start)
     {
-        // cada puerta abierta tocaba lo alcanzado cuando se abrió: alcanza con sumar sus zonas
+        // each opened door touched the reached area when it was opened: adding its zones is enough
         var zones = new HashSet<int> { start };
         for (int i = 0; i < doors.Count; i++)
             if ((opened & (1UL << i)) != 0) zones.UnionWith(doors[i].Zones);

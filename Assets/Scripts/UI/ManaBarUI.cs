@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Barra de maná: la barra vacía de fondo y encima la llena como Image "Filled" horizontal.
-// El relleno avanza de a un píxel del sprite para que el corte no quede a medio píxel.
+// Mana bar: the empty bar as background and the full one on top as a horizontal "Filled" Image.
+// The fill advances one sprite pixel at a time so the cut never lands mid-pixel.
 public class ManaBarUI : MonoBehaviour
 {
     [SerializeField] private ManaSystem _mana;
     [SerializeField] private Image _fill;
-    [SerializeField] private int _spriteWidth = 44;  // ancho en píxeles del sprite de la barra
-    [SerializeField] private int _leftBorder = 5;    // píxeles del borde izquierdo, iguales en la barra llena y la vacía
+    [SerializeField] private int _spriteWidth = 44;  // width of the bar sprite in pixels
+    [SerializeField] private int _leftBorder = 5;    // left border pixels, the same in the full and the empty bar
 
     private void OnEnable()
     {
@@ -28,7 +28,7 @@ public class ManaBarUI : MonoBehaviour
     private void Refresh(float current, float max)
     {
         float t = max > 0f ? Mathf.Clamp01(current / max) : 0f;
-        // Con algo de maná el relleno arranca después del borde, así siempre se ve un poco de azul
+        // With some mana the fill starts after the border, so a bit of blue always shows
         int pixels = t <= 0f ? 0 : _leftBorder + Mathf.CeilToInt(t * (_spriteWidth - _leftBorder));
         _fill.fillAmount = (float)pixels / _spriteWidth;
     }

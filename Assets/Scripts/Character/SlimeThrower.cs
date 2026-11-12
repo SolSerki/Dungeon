@@ -3,25 +3,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-// Lanza pedazos de slime hacia el mouse (cuesta vida) y suelta uno cuando recibe daño.
-// Se carga manteniendo apretado: cuanto más tiempo, más lejos cae.
+// Throws slime chunks towards the mouse (costs health) and drops one when taking damage.
+// It charges while held: the longer, the further it lands.
 [RequireComponent(typeof(HealthSystem), typeof(Character))]
 public class SlimeThrower : MonoBehaviour
 {
     [SerializeField] private SlimeChunk _chunkPrefab;
-    [SerializeField] private float _cost = 1f;               // medio corazón
-    [SerializeField] private float _minRange = 1f;           // distancia con un toque corto
-    [SerializeField, FormerlySerializedAs("_throwDistance")] private float _maxRange = 4f; // distancia con la carga completa
-    [SerializeField] private float _chargeTime = 1f;         // segundos apretado para llegar a _maxRange
-    [SerializeField] private float _cooldown = 0.3f;           // igual o mayor que la animación de escupir
+    [SerializeField] private float _cost = 1f;               // half a heart
+    [SerializeField] private float _minRange = 1f;           // distance with a short tap
+    [SerializeField, FormerlySerializedAs("_throwDistance")] private float _maxRange = 4f; // distance at full charge
+    [SerializeField] private float _chargeTime = 1f;         // seconds held to reach _maxRange
+    [SerializeField] private float _cooldown = 0.3f;           // equal to or longer than the spit animation
     [SerializeField] private float _damageDropDistance = 1.2f;
-    [SerializeField] private bool _damageDropLures = false;    // el pedazo que se suelta al recibir daño, ¿distrae enemigos?
-    [SerializeField] private float _spitDelay = 0f;            // la anticipación ya pasó en la pose de carga: sale al soltar
-    [SerializeField] private float _spitAnimLength = 0.25f;    // 3 frames a 12 fps (escupe, rebote, asentarse)
+    [SerializeField] private float _spitDelay = 0f;            // the wind-up already happened in the charge pose: it fires on release
+    [SerializeField] private float _spitAnimLength = 0.25f;    // 3 frames at 12 fps (spit, bounce, settle)
 
-    [Header("Sonidos")]
-    [SerializeField] private AudioSource _audio;        // el del slime (para el escupitajo)
-    [SerializeField] private AudioSource _chargeAudio;  // aparte, para poder cortar la carga al soltar
+    [Header("Sounds")]
+    [SerializeField] private AudioSource _audio;        // the slime's (for the spit)
+    [SerializeField] private AudioSource _chargeAudio;  // separate, so the charge sound can be cut on release
     [SerializeField] private AudioClip[] _chargeSounds;
     [SerializeField] private AudioClip[] _releaseSounds;
     [SerializeField, Range(0f, 1f)] private float _chargeVolume = 0.6f;
@@ -33,19 +32,19 @@ public class SlimeThrower : MonoBehaviour
     private float _nextThrowTime;
     private bool _charging;
     private float _chargeStart;
-    private InputDevice _aimDevice; // con qué se está apuntando (mouse o joystick)
+    private InputDevice _aimDevice; // what's being used to aim (mouse or joystick)
 
     public bool IsCharging => _charging;
     public SlimeChunk ChunkPrefab => _chunkPrefab;
 
-    // 0..1 mientras se mantiene apretado
+    // 0..1 while held
     public float ChargeProgress => _charging ? Mathf.Clamp01((Time.time - _chargeStart) / _chargeTime) : 0f;
 
-    // Hacia dónde iría el pedazo (sin contar paredes) si se soltara ahora
+    // Where the chunk would go (ignoring walls) if released now
     public Vector2 AimOffset(Vector2 from) =>
         AimDirection(from) * Mathf.Lerp(_minRange, _maxRange, ChargeProgress);
 
-    // Dónde caería el pedazo si se soltara ahora (para la vista previa)
+    // Where the chunk would land if released now (for the preview)
     public Vector2 PreviewTarget(Vector2 from) => _chunkPrefab.ResolveTarget(from, from + AimOffset(from));
 
     private void Awake()
@@ -78,11 +77,11 @@ public class SlimeThrower : MonoBehaviour
 
     private void Update()
     {
-        // Pose de carga mirando hacia donde apunta
+        // Charge pose facing where it aims
         if (_charging) _character.HoldCharge(AimDirection(transform.position));
     }
 
-    // Atacar cancela la carga (no gasta vida): el ataque tiene prioridad
+    // Attacking cancels the charge (no health spent): the attack takes priority
     private void OnAttack(InputAction.CallbackContext ctx) => CancelCharge();
 
     private void CancelCharge()
@@ -103,11 +102,11 @@ public class SlimeThrower : MonoBehaviour
         _input?.Dispose();
     }
 
-    // Al apretar: empieza a cargar (si puede lanzar)
+    // On press: starts charging (if it can throw)
     private void OnChargeStarted(InputAction.CallbackContext ctx)
     {
         if (_chunkPrefab == null || Time.time < _nextThrowTime || _health.IsDead) return;
-        if (_health.CurrentHealth <= _cost) return; // con medio corazón no se puede lanzar
+        if (_health.CurrentHealth <= _cost) return; // with half a heart left it can't throw
 
         _charging = true;
         _chargeStart = Time.time;
@@ -122,12 +121,12 @@ public class SlimeThrower : MonoBehaviour
         }
     }
 
-    // Al soltar: escupe a una distancia según cuánto tiempo estuvo apretado
+    // On release: spits at a distance based on how long it was held
     private void OnChargeReleased(InputAction.CallbackContext ctx)
     {
         if (!_charging) return;
         if (ctx.control != null) _aimDevice = ctx.control.device;
-        Vector2 offset = AimOffset(transform.position); // misma cuenta que la vista previa
+        Vector2 offset = AimOffset(transform.position); // same math as the preview
         _charging = false;
         StopChargeSound();
 
@@ -143,7 +142,7 @@ public class SlimeThrower : MonoBehaviour
         _nextThrowTime = Time.time + _cooldown;
     }
 
-    // El pedazo sale cuando la animación lo escupe, no al apretar el botón
+    // The chunk comes out when the animation spits it, not when the button is pressed
     private IEnumerator SpitAfterDelay(Vector2 offset)
     {
         yield return new WaitForSeconds(_spitDelay);
@@ -153,7 +152,7 @@ public class SlimeThrower : MonoBehaviour
         Spawn(from, from + offset);
     }
 
-    // Con mouse: hacia el cursor. Con joystick (o sin cámara): hacia donde mira el slime.
+    // With a mouse: towards the cursor. With a joystick (or no camera): where the slime faces.
     private Vector2 AimDirection(Vector2 from)
     {
         var cam = Camera.main;
@@ -168,19 +167,19 @@ public class SlimeThrower : MonoBehaviour
 
     private void DropOnDamage(HealthSystem.DamageInfo info)
     {
-        CancelCharge(); // un golpe corta la carga (no gasta vida)
+        CancelCharge(); // a hit cuts the charge (no health spent)
         if (_chunkPrefab == null || _health.IsDead) return;
 
-        // Direction es hacia donde te empuja el golpe: el pedazo sale para el otro lado, hacia el enemigo
+        // Direction is where the hit pushes you: the chunk flies the other way, towards the enemy
         Vector2 away = info.Direction.sqrMagnitude > 0.0001f ? -info.Direction.normalized : -_character.Facing;
         Vector2 dir = Quaternion.Euler(0f, 0f, Random.Range(-30f, 30f)) * away;
         Vector2 from = transform.position;
-        Spawn(from, from + dir * _damageDropDistance, _damageDropLures);
+        Spawn(from, from + dir * _damageDropDistance);
     }
 
-    private void Spawn(Vector2 from, Vector2 to, bool lures = true)
+    private void Spawn(Vector2 from, Vector2 to)
     {
         var chunk = Instantiate(_chunkPrefab, from, Quaternion.identity);
-        chunk.Launch(from, to, lures);
+        chunk.Launch(from, to);
     }
 }

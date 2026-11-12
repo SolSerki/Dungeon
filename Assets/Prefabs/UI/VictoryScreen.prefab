@@ -380,7 +380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You scaped \nthe Dungeon!"
+  m_text: "You escaped \nthe Dungeon!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8438a7de9f311da408db3f2ea65669d7, type: 2}
   m_sharedMaterial: {fileID: -3345568801660843055, guid: 8438a7de9f311da408db3f2ea65669d7, type: 2}
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Main Men\xFA"
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8438a7de9f311da408db3f2ea65669d7, type: 2}
   m_sharedMaterial: {fileID: -3345568801660843055, guid: 8438a7de9f311da408db3f2ea65669d7, type: 2}

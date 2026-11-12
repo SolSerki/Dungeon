@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Statue Front
+    uniqueID: 941410575
+    locked: 0
   - name: UI
     uniqueID: 978463920
     locked: 0

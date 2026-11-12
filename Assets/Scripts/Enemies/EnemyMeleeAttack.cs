@@ -4,15 +4,15 @@ public class EnemyMeleeAttack : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private float _damage = 1f;
-    [SerializeField] private float _range = 0.9f;          // distancia a la que empieza a atacar
-    [SerializeField] private float _hitOffset = 0.5f;      // cuánto se adelanta el golpe
+    [SerializeField] private float _range = 0.9f;          // distance at which it starts attacking
+    [SerializeField] private float _hitOffset = 0.5f;      // how far ahead the hit lands
     [SerializeField] private float _hitRadius = 0.5f;
-    [SerializeField] private float _attackDuration = 0.75f; // duración de la animación de ataque
+    [SerializeField] private float _attackDuration = 0.75f; // attack animation duration
     [SerializeField] private float _cooldown = 1f;
 
-    [Header("Sonidos")]
+    [Header("Sounds")]
     [SerializeField] private AudioSource _audio;
-    [SerializeField] private AudioClip[] _attackSounds;   // suena en el fotograma del golpe, pegue o no
+    [SerializeField] private AudioClip[] _attackSounds;   // plays on the hit frame, whether it lands or not
     [SerializeField, Range(0f, 1f)] private float _attackVolume = 0.6f;
 
     private int _attackHash;
@@ -35,7 +35,7 @@ public class EnemyMeleeAttack : MonoBehaviour
         _animator.SetTrigger(_attackHash);
     }
 
-    // Lo llama un Animation Event en el fotograma del impacto
+    // Called by an Animation Event on the impact frame
     public void DealDamage()
     {
         Sfx.PlayRandom(_audio, _attackSounds, _attackVolume);
@@ -47,7 +47,7 @@ public class EnemyMeleeAttack : MonoBehaviour
             if (character == null) continue;
 
             character.GetComponent<HealthSystem>().TakeDamage(_damage, _attackDirection);
-            return; // el Character tiene dos colliders: un solo golpe
+            return; // the Character has two colliders: a single hit
         }
     }
 

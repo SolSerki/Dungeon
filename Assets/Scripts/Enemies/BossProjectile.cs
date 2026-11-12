@@ -1,7 +1,7 @@
 using UnityEngine;
 
-// Onda de sombra que lanza el Boss: avanza en línea recta mientras se reproduce el VFX
-// y daña al jugador una sola vez. Se corta contra paredes y obstáculos.
+// Shadow wave launched by the Boss: travels in a straight line while the VFX plays
+// and damages the player only once. It stops against walls and obstacles.
 public class BossProjectile : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
@@ -17,9 +17,9 @@ public class BossProjectile : MonoBehaviour
     public void Launch(Vector2 direction)
     {
         _direction = direction.normalized;
-        transform.right = _direction; // el sprite del VFX mira a la derecha
+        transform.right = _direction; // the VFX sprite faces right
 
-        // estira la animación (0.58 s) para que dure lo mismo que el vuelo
+        // stretches the animation (0.58 s) so it lasts as long as the flight
         if (_animator != null && _animator.runtimeAnimatorController != null)
         {
             float clipLength = _animator.runtimeAnimatorController.animationClips[0].length;
@@ -45,7 +45,7 @@ public class BossProjectile : MonoBehaviour
             if (character == null) continue;
 
             character.GetComponent<HealthSystem>().TakeDamage(_damage, _direction);
-            _hasHit = true; // sigue volando pero ya no daña
+            _hasHit = true; // keeps flying but no longer deals damage
             return;
         }
     }

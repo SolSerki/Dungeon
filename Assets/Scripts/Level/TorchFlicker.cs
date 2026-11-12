@@ -18,7 +18,7 @@ public class TorchFlicker : MonoBehaviour
         _light = GetComponent<Light2D>();
         _baseIntensity = _light.intensity;
         _baseRadius = _light.pointLightOuterRadius;
-        // Semilla distinta por antorcha para que no titilen sincronizadas
+        // A different seed per torch so they don't flicker in sync
         _seed = Random.value * 100f;
     }
 

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-// Copia el sprite (frame actual), flip y color del renderer del cuerpo a este renderer
-// de "brillo". Como el sprite es el mismo, Unity le pasa la Secondary Texture
-// _EmissionTex de ese frame al material de los ojos.
+// Copies the sprite (current frame), flip and color from the body renderer to this
+// "glow" renderer. Since the sprite is the same, Unity passes that frame's
+// _EmissionTex Secondary Texture to the eyes material.
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteGlowFollower : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class SpriteGlowFollower : MonoBehaviour
             _source = transform.parent.GetComponent<SpriteRenderer>();
     }
 
-    // LateUpdate corre después del Animator: copiamos el frame ya actualizado
+    // LateUpdate runs after the Animator: copy the already updated frame
     private void LateUpdate()
     {
         if (_source == null) return;
